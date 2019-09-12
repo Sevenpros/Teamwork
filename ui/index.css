@@ -200,7 +200,10 @@ input::placeholder{
 }
 .user-header{
     min-height:70px;
-    background: linear-gradient(to bottom, rgba(12, 125, 255, 0.911), rgba(2, 179, 255, 0.473)); 
+    width:100%;
+    background: linear-gradient(to bottom, rgb(12, 125, 255), rgb(81, 203, 255)); 
+    position:fixed;
+
 }
 .user-logo{
     margin-top:3px;
@@ -294,6 +297,7 @@ input::placeholder{
     position:sticky;
     top:12%;
     z-index:1;
+    margin-bottom:12%;
     
 }
 
@@ -412,3 +416,65 @@ div:empty:before {
   .tooltip:hover .tooltiptext {
     visibility: visible;
   }
+  .whole-articles{
+    width:99%;
+    min-height:200px;
+    border-radius:5px;
+    margin-top:4%;
+    padding:1% 0 2% 1%;
+    background:white;
+    border:1px solid rgb(8, 139, 247);
+}
+.art-header{
+  width:100%;
+  min-height:50px;
+  display:flex;
+}
+.user-image{
+ margin-right:1%;
+}
+.user-pro-pic{
+  width:40px;
+  border-radius:50%;
+  height: 40px;
+  border:2px solid rgb(18, 107, 190);
+}
+.user-caption{
+ 
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size:1em;
+  font-weight:bold;
+  color: rgb(9, 51, 75)
+}
+.user-title{
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  color:rgba(43, 42, 42, 0.801);
+  font-size:0.8em;
+  margin:0 3%;
+ 
+}
+.art-date{
+  margin-left:50%;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  color:rgba(43, 42, 42, 0.801);
+  font-size:0.8em;
+  font-weight:bold;
+}
+.art-body{
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-size:1.04em;
+  line-height:140%;
+  color:rgba(9, 44, 77, 0.966);
+
+}
+.art-body:hover{
+  cursor: pointer;
+  color:rgba(4, 22, 37, 0.945);
+ 
+}
+.article-shot{
+width:100%;
+border-radius:1%;
+height:280px;
+margin-top:2%;
+}
