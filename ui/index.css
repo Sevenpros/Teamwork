@@ -1,0 +1,187 @@
+*{
+    margin:0;
+    padding:0;
+    border:none;
+}
+body{
+    margin:0;
+}
+.whole-body{
+    min-height: 600px;    
+    background: url(../images/team2.png);
+    background-size:cover;
+    background-position: fixed;
+}
+.body-background{
+    min-height:600px;
+    background: linear-gradient(to right, rgba(2, 90, 204, 0.952), rgba(74, 196, 245, 0.767));
+    display:flex;
+    padding:0 4%;
+}
+.left-tab{
+    width:40%;
+    min-height:600px;
+    position: relative;
+   
+}
+.right-tab{
+    width:60%;  
+
+}
+.logo{
+    padding:1%;
+    float:right;
+}
+.logo-img{
+    width:90px;
+    border-radius:50%;
+    border:2px dotted black;
+}
+.signup-header{
+    display:flex;
+    margin-top:20%;
+
+}
+/* STYLING THE LOGIN BACKGROUND */
+.login-form{
+    width:50%;
+    height:480px;
+    padding:2%;
+}
+/* STYLING THE SIGNUP BACKGROUND */
+.signup-form{
+    width: 50%;
+    padding:2% 0;
+    height:480px;
+}
+[signup]{
+    display:none;
+}
+/* STYLING THE ACTIVE FORM */
+.active-form{
+    background: linear-gradient(to top, rgba(44, 30, 240, 0.815), rgba(170, 192, 241, 0.911));
+    color:blue;
+    border:none;
+    border-radius:2%;
+    
+}
+
+/* STYLING THE FORM WHERE SIGNUP AND LOGIN FIELDS ARE DISPLAYED  */
+
+.general-form{
+    width:70%;
+    min-height: 430px;
+    border:1px solid rgba(0, 0, 0, 0.596);
+    position: absolute;
+    top:22%;
+    margin:1% 4%;
+    border-radius:2%;
+    background-color: white;
+    padding:3%;
+
+}
+/*  STYLE FOR ALL INPUTS */
+.input{
+    width: 80%;
+    height: 25px;
+    border-radius: 2px;
+    border:none;
+    border-bottom:solid 1px rgba(43, 38, 38, 0.678);
+    background: rgba(255, 255, 255, 0.466);
+    margin: 1% 2%;
+    padding:3% 3%;
+    color: rgba(26, 24, 24, 0.801);
+    font-weight: bolder;
+    outline: none;
+}
+
+/* STYLE FOR SIGNUP INPUTS (class can be used where it's necessary)*/
+.signup-input{
+    border:1px solid rgba(76, 82, 161, 0.89);
+    background: white;
+    margin:0 4%;
+}
+
+input::placeholder{
+    color: rgba(26, 24, 24, 0.664);
+    font-weight: bold;
+}
+.label{
+    color: rgba(26, 24, 24, 0.801);
+    font-weight: bolder;
+    margin: 1% ;
+    font-size:0.8em;
+}
+.signup-label{
+    top:15%;
+    position: absolute;
+    margin: 0 5%;
+    background: white;
+    
+}
+.button{
+    border:none;
+    padding: 3% 35%;
+    background: linear-gradient(to top, rgba(10, 99, 233, 0.815), rgba(121, 160, 243, 0.911));
+    border-radius: 2px;
+    margin-top:2%;
+    color: rgba(255, 255, 255, 0.979);
+    font-weight: bolder;
+    width:90%;
+    margin:5% 0;
+    
+
+}
+
+.button:hover{
+   opacity: 0.7;
+    cursor: pointer;
+}
+.signup-text{
+    color: rgba(26, 24, 24, 0.801);
+   
+    font-weight: bold;
+}
+.signup-text-big{
+    font-size:1em;
+    margin:5% 10%;
+    float:right; 
+    color:rgb(55, 73, 230);
+    font-family:'Times New Roman', Times, serif;
+}
+.link{
+    color:orangered;
+    text-decoration: none;
+    background: none;
+    
+}
+.link:hover{
+    text-decoration: underline;
+    color:rgb(61, 58, 201);
+    font-size: 1em;
+}
+.signup-link{
+    color:white;
+    font-weight: bold;
+    text-align: center;
+    margin:0 15%;
+}
+
+.teamwork-desc p{
+    padding:30% 2% 0 5%;
+    color:white;
+    font-size:6em;
+    font-weight: bolder;
+    font-family:'Potra';
+}
+.details{
+    font-family: 'Times New Roman', Times, serif;
+    font-size:1.5em;
+    color:white;
+    margin:0 7%;
+}
+.separator{
+    margin:15% 40% ;
+    font-weight:bold;
+    color:rgb(40, 76, 236);
+}
