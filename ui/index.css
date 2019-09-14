@@ -203,12 +203,85 @@ input::placeholder{
     width:100%;
     background: linear-gradient(to bottom, rgb(12, 125, 255), rgb(16, 181, 252)); 
     position:fixed;
+    display:flex;
 
 }
-.user-logo{
-    margin-top:3px;
-    width:60px;
+.user-logo-nav{
+    width:30%;
 }
+.user-logo{
+    /* margin-top:3px; */
+    width:60px;
+    margin:2px 0 2px 3px;
+}
+.nav-menu{
+    display:flex;
+    line-height:70px;
+    width:70%;
+  
+  
+}
+.searching{
+    width:50%
+}
+.searching-input{
+    padding:2% 3%;
+    /* height:30px; */
+    width:90%;
+    border-radius:20px;
+    outline:none;
+    margin:4% 2%;
+}
+.nav-menu-items{
+    width:50%;
+     padding:0 2%; 
+    display:flex;
+    text-align:right;
+}
+.menu-items{
+    font-family: 'Gothic A1', sans-serif;
+    color:white;
+    width:25%;
+    margin:0 2%;
+    text-align:right;
+    font-weight:bold;
+    position:relative;
+}
+.menu-items:hover {
+    color:rgb(1, 57, 110);
+    cursor:pointer;
+}
+.menu-items:hover .user-menu{
+    display:block;
+}
+.user-menu{
+   text-align:center;
+    list-style:none;
+    font-size:0.75em;
+    color:rgb(1, 62, 87);
+    /* margin:0; */
+    width:120px;
+    line-height:150%;
+    position:absolute;
+    z-index: 2;
+    top:42px;
+    padding:0.2%;
+    border-radius:5px;
+    display:none
+   
+    /* left:90%; */
+}
+.user-menu li{
+    padding-top:4%;
+}
+.user-menu li a{
+    color:white;
+    font-weight:bolder;
+}
+.user-menu li a:hover{
+    color:rgb(1, 58, 122);
+}
+
 .main-tab{
     display:flex;
     /* margin:1%; */
@@ -284,7 +357,7 @@ input::placeholder{
     width:100%;
     min-height:130px;
     border-radius:3px;
-    border:1px solid rgb(1, 141, 255);
+    border:1px solid rgba(1, 141, 255, 0.384);
     background:white;
     position:sticky;
     top:12%;
@@ -416,7 +489,7 @@ div:empty:before {
     margin-top:4%;
     padding:1% 1% 2% 1%;
     background:white;
-    border:1px solid rgb(8, 139, 247);
+    border:1px solid rgba(8, 139, 247, 0.356);
 }
 .art-header{
   width:100%;
@@ -592,9 +665,9 @@ margin-top:2%;
     font-size:0.8em;
     font-family: 'Handlee', cursive;}
 .int-articles{
-    text-align:center;
+    text-align:left;
     color: rgb(3, 129, 202);
-    padding:1%;
+    padding:1% 5%;
     font-family: 'Gamja Flower', cursive;
     line-height:150%;
 }
@@ -619,8 +692,15 @@ margin-top:2%;
      /* background: rgba(0, 0, 0, 0.425); */
      position:sticky;
     top:12%;
-    overflow-y: auto;
     
+    /* z-index:0; */
+    
+}
+.scroll-trends{
+    position:fixed;
+    height:500px;
+    top:25%;
+    overflow-y: auto;
 }
 .recent-header{
     padding:3%;
@@ -664,8 +744,6 @@ margin-top:2%;
 }
 .trends-p:hover{
 cursor:pointer;
-border-left:1px solid rgb(0, 119, 255);
+border-left:2px solid rgb(0, 119, 255);
 }
-.scroll-trends{
-    overflow-y: auto;
-}
+
