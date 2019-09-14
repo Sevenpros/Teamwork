@@ -6,6 +6,7 @@ const loginContent=document.querySelector('[login]');
 const signupContent=document.querySelector('[signup]');
 const articles=document.querySelectorAll('.art-body');
 const deleteButtons=document.querySelectorAll('.delete-article');
+const edits=document.querySelectorAll('.edit-icon');
 let modal = document.querySelector("#myModal");
 let delModal=document.querySelector('#deleteModal')
 for(let logins of loginSwitchs){
@@ -45,6 +46,15 @@ for(let delButton of deleteButtons){
     
     })
 }
+edits.forEach((element,index) => {
+    element.addEventListener('click',event=>{
+        event.preventDefault();
+        const currentArticle=document.querySelectorAll('.art-body p')[index].textContent;
+       const articleInput=document.querySelector('.article-input');
+       articleInput.textContent=currentArticle;
+       //articleInput.focus();
+    })
+});
 // Get the <span> element that closes the modal
 let span = document.querySelectorAll(".close")[0];
 
