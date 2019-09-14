@@ -201,7 +201,7 @@ input::placeholder{
 .user-header{
     min-height:70px;
     width:100%;
-    background: linear-gradient(to bottom, rgb(12, 125, 255), rgb(81, 203, 255)); 
+    background: linear-gradient(to bottom, rgb(12, 125, 255), rgb(16, 181, 252)); 
     position:fixed;
 
 }
@@ -503,6 +503,9 @@ margin-top:2%;
     border-radius:10px;
     
   }
+  .content-delete{
+      width:30%;
+  }
   
   /* The Close Button */
   .close {
@@ -537,3 +540,45 @@ margin-top:2%;
   .article-details:hover{
       cursor: default;
   }
+  .delete-header{
+      text-align:center;
+      border-bottom:1px solid rgba(0, 80, 155, 0.541);
+  }
+  .buttons{
+      text-align:center;
+      padding:2%;
+  }
+  .delete-text{
+      color:rgb(2, 75, 172);
+      margin:2%;
+  }
+  .delete-btn{
+      padding:1.5% 5%;
+      margin:2%;
+      border:1px solid rgba(255, 30, 0, 0.89);
+      background:none;
+      border-radius:20px;
+      color:rgba(255, 30, 0, 0.89);
+      font-weight:bolder;
+      outline:none;
+
+  }
+  .delete-btn:hover{
+      color:white;
+      background:rgba(255, 30, 0, 0.89);
+  }
+.cancel-btn{
+    padding:1.5% 5%;
+    margin:2%;
+    border:1px solid rgb(0, 81, 255);
+    background:none;
+    border-radius:20px;
+    font-weight:bolder;
+    color:rgb(0, 81, 255);
+    outline:none;
+   
+}
+.cancel-btn:hover{
+    color:white;
+    background:rgb(0, 81, 255);
+}

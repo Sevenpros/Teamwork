@@ -64,9 +64,9 @@
                                         <section class="article-actions">
                                         <div class="art-icons">
                                             
-                                               <a href="#" class="tooltip"> <img src="../images/Comment.png" class="icons-image article"><span class="tooltiptext"> Add comment</span></a><span class="info icons-info">14</span>
+                                               <a href="#" class="tooltip"> <img src="../images/Comment.png" class="icons-image article art-body"><span class="tooltiptext"> Add comment</span></a><span class="info icons-info">14</span>
                                                 <a href="#" class="tooltip"><img src="../images/edit.png" class="icons-image image"><span class="tooltiptext">click to edit this article</span></a><span class="info icons-info"></span>
-                                                <a href="#" class="tooltip"><img src="../images/del.png" class="icons-image"><span class="tooltiptext">Delete this article</span></a><span class="info icons-info"></span>
+                                                <a href="#" class="tooltip"><img src="../images/del.png" class="icons-image delete-article"><span class="tooltiptext">Delete this article</span></a><span class="info icons-info"></span>
                 
                                         </div>
                                         <div class="art-post">
@@ -101,8 +101,8 @@
                                             <section class="article-actions">
                                             <div class="art-icons">
                                                 
-                                                    <a href="#" class="tooltip"> <img src="../images/comment2.png" class="icons-image article"><span class="tooltiptext"> Add comment</span></a><span class="info icons-info">14</span>
-                                                    <a href="#" class="tooltip"><img src="../images/innap.png" class="icons-image image"><span class="tooltiptext">Report this article</span></a><span class="info icons-info"></span>
+                                                    <a href="#" class="tooltip"> <img src="../images/comment.png" class="icons-image article art-body"><span class="tooltiptext"> Add comment</span></a><span class="info icons-info">14</span>
+                                                    <a href="#" class="tooltip"><img src="../images/innap.png" class="icons-image image "><span class="tooltiptext">Report this article</span></a><span class="info icons-info"></span>
                         
                                             </div>
                                             <div class="art-post">
@@ -160,6 +160,23 @@
                 </div>
               
               </div>
+              <div id="deleteModal" class="modal modal-delete">
+
+                    <!-- Modal content -->
+                    <div class="modal-content content-delete">
+                      <span class="close">&times;</span>
+                    <section>
+                        <header class="delete-header">
+                            <h3 class="signup-text delete-text">Do you want to delete this article?</h3>
+                        </header>
+                        <div class="buttons">
+                            <button class="delete-btn">Delete</button>
+                            <button class="cancel-btn">Cancel</button>
+                        </div>
+                    </section> 
+                    </div>
+                  
+                  </div>
               <script src="index.js"></script>
     </body>
 </html>
