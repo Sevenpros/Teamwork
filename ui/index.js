@@ -57,10 +57,13 @@ edits.forEach((element,index) => {
 });
 // Get the <span> element that closes the modal
 let span = document.querySelectorAll(".close")[0];
-
+let span2 = document.querySelectorAll(".close")[1];
 span.onclick = () =>{
   modal.style.display = "none";
 }
+span2.onclick = () =>{
+    delModal.style.display = "none";
+  }
 window.onclick = event=> {
   if (event.target == modal ||event.target == delModal) {
     modal.style.display = "none";
