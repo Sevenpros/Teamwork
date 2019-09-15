@@ -742,6 +742,11 @@ margin-top:2%;
  color:white;
  cursor:default;
 }
+.trends-p{
+    color:rgba(0, 0, 0, 0.699);
+    font-family: 'Handlee', cursive;
+    font-size:0.9em;
+}
 .trends-p:hover{
 cursor:pointer;
 border-left:2px solid rgb(0, 119, 255);
