@@ -70,5 +70,34 @@ window.onclick = event=> {
     delModal.style.display='none';
   }
 }
+document.querySelector('.profile-switch').addEventListener('click',event=>{
+event.preventDefault();
+
+    document.querySelector('.profile-tab').style.display='block';
+    document.querySelector('.articles').style.display='none';
+    document.querySelector('.recent-art-tab').style.display='none';
+    document.querySelector('.new-article').style.display='none';
 
 
+})
+document.querySelector('.article-switch').addEventListener('click',event=>{
+    event.preventDefault();
+    
+        document.querySelector('.profile-tab').style.display='none';
+        document.querySelector('.articles').style.display='block';
+        document.querySelector('.recent-art-tab').style.display='none';
+        document.querySelector('.new-article').style.display='block';
+    
+    
+    })
+
+    document.querySelector('.trend-switch').addEventListener('click',event=>{
+        event.preventDefault();
+        
+            document.querySelector('.profile-tab').style.display='none';
+            document.querySelector('.articles').style.display='none';
+            document.querySelector('.recent-art-tab').style.display='block';
+            document.querySelector('.new-article').style.display='none';
+        
+        
+        })

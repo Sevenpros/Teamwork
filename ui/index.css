@@ -6,6 +6,8 @@
 body{
     margin:0;
 }
+img { max-width: 100%; height: auto; }
+
 .whole-body{
     min-height: 650px;    
     background: url(../images/team2.png);
@@ -18,6 +20,7 @@ body{
     display:flex;
     padding:0 4%;
 }
+
 .left-tab{
     width:40%;
     min-height:600px;
@@ -182,13 +185,13 @@ input::placeholder{
 .teamwork-desc p{
     padding:0% 2% 0 5%;
     color:white;
-    font-size:6em;
+    font-size:7vw;
     font-weight: bolder;
     font-family:'Potra';
 }
 .details{
     font-family: 'Times New Roman', Times, serif;
-    font-size:1.5em;
+    font-size:2vw;
     color:white;
     margin:0 7%;
 }
@@ -204,6 +207,7 @@ input::placeholder{
     background: linear-gradient(to bottom, rgb(12, 125, 255), rgb(16, 181, 252)); 
     position:fixed;
     display:flex;
+    top:0;
 
 }
 .user-logo-nav{
@@ -212,7 +216,7 @@ input::placeholder{
 .user-logo{
     /* margin-top:3px; */
     width:60px;
-    margin:2px 0 2px 3px;
+    margin:2px 0 2px 3%;
 }
 .nav-menu{
     display:flex;
@@ -246,6 +250,7 @@ input::placeholder{
     text-align:right;
     font-weight:bold;
     position:relative;
+    font-size:1vw;
 }
 .menu-items:hover {
     color:rgb(1, 57, 110);
@@ -360,13 +365,47 @@ input::placeholder{
     border:1px solid rgba(1, 141, 255, 0.384);
     background:white;
     position:sticky;
-    top:12%;
+    top:11%;
     z-index:1;
     margin-bottom:12%;
     padding-right:1%;
     
 }
+.tab-menu div:hover{
+    cursor:pointer;
+    color:blue;
+}
+.tab-menu{
+    height:7vh;
+    /* background:black; */
+    display:flex;
+    padding:0 3%;
+    font-size:2vw;
+    color:rgba(97, 98, 99, 0.993);
+    margin-top:10%;
+    display:none;
+    background:white;
+}
 
+.profile-switch{
+    width:30%;
+}
+.profile-switch:focus{
+color:black;
+}
+.active-switch{
+ border:1px solid blue;
+ line-height:5vh;
+ color:rgb(2, 77, 238)
+}
+.article-switch{
+    width:30%;
+    text-align:center;
+}
+.trend-switch{
+width:35%;
+text-align:center;
+}
 .article-input{
     width:100%;
     border:none;
@@ -586,9 +625,14 @@ margin-top:2%;
     text-decoration: none;
     cursor: pointer;
   }
+  .text-comment{
+      width:100%;
+  }
   .new-comment{
       min-height:70px;
       border:none;
+      
+      /* width:100%; */
   }
   .input-comment{
      padding:1%;
@@ -596,6 +640,8 @@ margin-top:2%;
      border: 1px solid rgb(0, 140, 255);
      border-radius:20px;
      text-align:left;
+     width:90%;
+     outline:none;
   }
   .article-details{
     font-family: 'Gamja Flower', cursive;
@@ -751,4 +797,204 @@ margin-top:2%;
 cursor:pointer;
 border-left:2px solid rgb(0, 119, 255);
 }
+@media screen and (max-width:1024px){
+    .profile-tab,.recent-art-tab{
+        display:none;
+        
+    }
+  .main-tab{
+      display:block;
+  }
+  
+    .tab-menu{
+        display:block;
+        display:flex;
+        line-height:50px;
+        font-size:3.5vw;
+        
+    }
+    .profile-tab,.articles-tab,.recent-art-tab{
+        width:100%;
+    }
+    .profile-header{
+        height:35vh;
+    }
+    .pro-back{
+       height: 15vh;
+    }
+   .picture{
+        width:250px;
+        height:250px;
+   }
+   .image-caption{
+       font-size:3.5vw;
+   }
+   .job-title{
+       font-size:3.5vw;
+   }
+   .topic-header{
+       font-size:5vw;
+   }
+   .topic-desc{
+       font-size:3vw;
+   }
+   .topic-input{
+       width:100%;
+       /* background:rgb(0, 153, 255); */
+   }
+   .t-input{
+       border:2px solid rgb(5, 40, 240);
+       padding:3%;
+       font-size:4vw;
+   }
+   .cancel-btn{
+       padding:3% 7%;
+       font-size:3vw;
+       border:1px solid blue;
+   }
+ 
+   
+   .int-articles{
+       font-size:3vw;
+   }
+   .new-article{
+    border:1px solid black;
+    border-radius:5px;
+    width:95%;
+    border:5%;
+   }
+    .article-input{
+        font-size:3vw;
+        
+    }
+    .icons-image{
+        width:70px;
+        height:50px;
+    }
+    .article-shot{
+        height:35vh;
+    }
+    .post-btn{
+        font-size:3vw;
+    }
+    .whole-articles{
+        margin-top:1%;
+    }
+    .user-caption{
+        font-size:3vw;
+    }
+    .user-title{
+        font-size:2vw;
+    }
+    .art-body{
+        font-size:3.5vw;
+    }
+    .info{
+        display:none;
+    }
+   
+    .recent-art-tab{
+        position:fixed;
+        top:10%;
+        margin:0;
+    }
+    .scroll-trends{
+        position:absolute;
+        top:auto;
+        height:80vh;
+    }
+    .trend-btn{
+        font-size:3vw;
+    }
+    
+}
+@media screen and (max-width: 800px) {
+    .picture{
+        width:200px;
+        height:200px;
+    }
+    .general-form{
+        top:10%;
+        width:90vw;
+        height:60vh;
+        margin:0 2%;
 
+    }
+    .body-background{
+        height:100vh;
+    }
+    .logo{
+        display:none;
+    }
+   
+  }
+  
+@media screen and (max-width: 420px) {
+    .body-background{
+        flex-direction:column;
+    }
+    .left-tab{
+        width:100vw;
+    }
+    .general-form{
+        top:15%;
+        width:80vw;
+        height:40vh;
+
+    }
+    .login-form{
+        height:70vh;
+    }
+    .signup-form{
+        height:70vh;
+    }
+    .nav-menu-items{
+         display:none; 
+        
+    }
+    .searching{
+        margin:-4% 10% 
+    }
+    .trend-articles{
+        margin-bottom:15%;
+        margin-left:5%;
+     }
+     .recent-art-tab{
+        font-size:4.2vw;
+     }
+     .trends-p{
+        font-size:4.2vw;
+    }
+    .user-title{
+        font-size:3vw;
+    }
+    .art-body{
+     font-size:4vw;
+    }
+    .articles{
+        margin-top:70%;
+        margin-left:5%;
+    }
+    .articles{
+        margin:10% 1%;
+    }
+    .new-article{
+        top:9.25%;
+        margin-bottom:3%;
+    }
+    .tab-menu{
+        margin-top:20%;
+    }
+    .picture{
+        width:100px;
+        height:100px;
+    }
+    .icons-image{
+        width:30px;
+        height:30px;
+    }
+    .recent-art-tab{
+        top:15%
+    }
+    
+}
