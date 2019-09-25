@@ -16,6 +16,9 @@ const helper = {
     const token = jwt.sign({ email }, process.env.TOKEN_KEY);
     return token;
   },
+  matchUser(plain, hash) {
+    return bcrypt.compareSync(plain, hash);
+  },
   addUser(req) {
     const newUser = {
       id: users.length + 1,
