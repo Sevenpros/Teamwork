@@ -1,3 +1,4 @@
+@media screen and (max-width:3000px){
 *{
     margin:0;
     padding:0;
@@ -9,13 +10,13 @@ body{
 img { max-width: 100%; height: auto; }
 
 .whole-body{
-    min-height: 650px;    
+    min-height: 100vh;    
     background: url(../images/team2.png);
     background-size:cover;
     background-position: fixed;
 }
 .body-background{
-    min-height:650px;
+    min-height:100vh;
     background: linear-gradient(to right, rgba(2, 90, 204, 0.952), rgba(74, 196, 245, 0.767));
     display:flex;
     padding:0 4%;
@@ -48,19 +49,27 @@ img { max-width: 100%; height: auto; }
 .signup-header{
     display:flex;
     margin-top:20%;
+    position: relative;
 
 }
 /* STYLING THE LOGIN BACKGROUND */
 .login-form{
     width:50%;
-    height:480px;
-    padding:2%;
+    height:70vh;
+    padding:1% 2%;
+    position: absolute;
+    left: 1%;
 }
 /* STYLING THE SIGNUP BACKGROUND */
 .signup-form{
     width: 50%;
-    padding:2% 0;
-    height:480px;
+    padding: 1% 0;
+    height:70vh;
+    position: absolute;
+    left: 35%;
+}
+#sign-up{
+    float:right;
 }
 [signup]{
 
@@ -71,7 +80,7 @@ img { max-width: 100%; height: auto; }
 }
 /* STYLING THE ACTIVE FORM */
 .active-form{
-    background: linear-gradient(to top, rgba(44, 30, 240, 0.815), rgba(170, 192, 241, 0.911));
+    background: linear-gradient(to top, rgb(1, 43, 99), rgba(170, 192, 241, 0.911));
     color:blue;
     border:none;
     border-radius:2%;
@@ -82,10 +91,10 @@ img { max-width: 100%; height: auto; }
 
 .general-form{
     width:70%;
-    min-height: 430px;
+    min-height: 60vh;
     border:1px solid rgba(0, 0, 0, 0.596);
     position: absolute;
-    top:22%;
+    top:20%;
     margin:1% 4%;
     border-radius:2%;
     background-color: white;
@@ -304,6 +313,7 @@ input::placeholder{
     top:12%;
     z-index:1;
     background:white;
+    display:block;
     /* background: linear-gradient(to bottom, rgba(9, 2, 104, 0.171), rgba(194, 211, 218, 0.582));  */
     
    
@@ -357,6 +367,7 @@ input::placeholder{
     /* background: linear-gradient(to bottom, rgba(9, 2, 104, 0.171), rgba(194, 211, 218, 0.582));  */
     margin: 0.5% 0;
     border-radius:3px;
+    display:block;
 }
 .new-article{
     width:100%;
@@ -635,13 +646,14 @@ margin-top:2%;
       /* width:100%; */
   }
   .input-comment{
-     padding:1%;
+     padding:3%;
      min-height: 20px;
      border: 1px solid rgb(0, 140, 255);
      border-radius:20px;
      text-align:left;
      width:90%;
      outline:none;
+     margin: 2% 0%;
   }
   .article-details{
     font-family: 'Gamja Flower', cursive;
@@ -658,6 +670,9 @@ margin-top:2%;
   .buttons{
       text-align:center;
       padding:2%;
+  }
+  .btn-comment{
+      float:left;
   }
   .delete-text{
       color:rgb(2, 75, 172);
@@ -725,8 +740,10 @@ margin-top:2%;
     width:60%;
     border:1px solid rgb(0, 101, 160);
     padding:1.5%;
-    border-radius:20px;
     outline:none;
+    background:rgba(39, 164, 247, 0.966);
+    color:white;
+    margin:2%;
 }
 .recent-art-tab{
     margin-top:20px;
@@ -738,7 +755,7 @@ margin-top:2%;
      /* background: rgba(0, 0, 0, 0.425); */
      position:sticky;
     top:12%;
-    
+    display:block;
     /* z-index:0; */
     
 }
@@ -797,10 +814,23 @@ margin-top:2%;
 cursor:pointer;
 border-left:2px solid rgb(0, 119, 255);
 }
+}
+@media screen and (max-width:1160px){
+    .general-form{
+        top:18%;
+    }
+}
 @media screen and (max-width:1024px){
     .profile-tab,.recent-art-tab{
         display:none;
         
+    }
+    .left-tab{
+        width:70vw;
+        font-size:2.5vw;
+    }
+    .general-form{
+        top:12%;
     }
   .main-tab{
       display:block;
@@ -811,10 +841,14 @@ border-left:2px solid rgb(0, 119, 255);
         display:flex;
         line-height:50px;
         font-size:3.5vw;
+        position:sticky;
+        top:5%;
         
     }
     .profile-tab,.articles-tab,.recent-art-tab{
-        width:100%;
+        width:100vw;
+        padding:0;
+        margin:0;
     }
     .profile-header{
         height:35vh;
@@ -845,14 +879,27 @@ border-left:2px solid rgb(0, 119, 255);
    .t-input{
        border:2px solid rgb(5, 40, 240);
        padding:3%;
-       font-size:4vw;
+       font-size:3vw;
+   }
+   .t-input:focus{
+       width: 30%;
+       font-size:2vw;
+       
+
+
    }
    .cancel-btn{
        padding:3% 7%;
        font-size:3vw;
        border:1px solid blue;
    }
- 
+   .modal-content{
+       width:80%;
+       
+   }
+   .article-details{
+       font-size:3vw;
+   }
    
    .int-articles{
        font-size:3vw;
@@ -860,8 +907,9 @@ border-left:2px solid rgb(0, 119, 255);
    .new-article{
     border:1px solid black;
     border-radius:5px;
-    width:95%;
+    /* width:98%; */
     border:5%;
+    top:12%;
    }
     .article-input{
         font-size:3vw;
@@ -870,6 +918,11 @@ border-left:2px solid rgb(0, 119, 255);
     .icons-image{
         width:70px;
         height:50px;
+        margin: 0 10px;
+    }
+    .video{
+        height:40px;
+        margin-top:8px;
     }
     .article-shot{
         height:35vh;
@@ -895,7 +948,7 @@ border-left:2px solid rgb(0, 119, 255);
    
     .recent-art-tab{
         position:fixed;
-        top:10%;
+        top:15%;
         margin:0;
     }
     .scroll-trends{
@@ -909,24 +962,73 @@ border-left:2px solid rgb(0, 119, 255);
     
 }
 @media screen and (max-width: 800px) {
+    .signup-header{
+        margin-top: 0%;
+    }
+    .left-tab{
+        width:100%;
+    }
     .picture{
         width:200px;
         height:200px;
     }
     .general-form{
-        top:10%;
-        width:90vw;
+        top:30%;
+        /* width:90%; */
         height:60vh;
-        margin:0 2%;
+        margin:0 5%;
 
     }
+    .whole-background{
+        margin: 0;
+    }
     .body-background{
-        height:100vh;
+        flex-direction:column;
     }
     .logo{
         display:none;
     }
-   
+    .teamwork-desc{
+        position: fixed;
+        top: 2%;
+        z-index:1;
+        width:100%;
+        margin-bottom: 5%;
+    }
+    .signup-form{
+        margin-top: 20%;
+    }
+    .login-form{
+        margin-top: 20%;
+    }
+   .tab-menu{
+       top:6%;
+   }
+   .searching-input{
+       padding:5%;
+   }
+  }
+  @media screen and (max-width: 550px){
+      .general-form{
+          top:25%;
+      }
+      .tab-menu{
+        top:8%;
+    }
+    
+    .user-image{
+        width:15%;
+    }
+    .user-name{
+        width:40%;
+    }
+    .art-date{
+        margin:0;
+        width:33%;
+    }
+    .video{
+        margin:0;
+    }
   }
   
 @media screen and (max-width: 420px) {
@@ -947,13 +1049,20 @@ border-left:2px solid rgb(0, 119, 255);
     }
     .signup-form{
         height:70vh;
+        left:45%;
     }
     .nav-menu-items{
          display:none; 
         
     }
+    .profile-tab{
+        top:15%;
+    }
     .searching{
         margin:-4% 10% 
+    }
+    .searching-input{
+        padding: 5% 15%;
     }
     .trend-articles{
         margin-bottom:15%;
@@ -979,11 +1088,11 @@ border-left:2px solid rgb(0, 119, 255);
         margin:10% 1%;
     }
     .new-article{
-        top:9.25%;
+        top:15%;
         margin-bottom:3%;
     }
     .tab-menu{
-        margin-top:20%;
+        margin-top:25%;
     }
     .picture{
         width:100px;
@@ -997,4 +1106,15 @@ border-left:2px solid rgb(0, 119, 255);
         top:15%
     }
     
+}
+@media screen and (max-width:330px){
+    .tab-menu{
+        top:12%;
+    }
+    .new-article{
+        top:19%;
+    }
+    .profile-tab{
+        top:20%;
+    }
 }
