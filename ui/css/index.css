@@ -376,7 +376,7 @@ input::placeholder{
     border:1px solid rgba(1, 141, 255, 0.384);
     background:white;
     position:sticky;
-    top:11%;
+    top:12%;
     z-index:1;
     margin-bottom:12%;
     padding-right:1%;
@@ -814,6 +814,15 @@ margin-top:2%;
 cursor:pointer;
 border-left:2px solid rgb(0, 119, 255);
 }
+.all-articles{
+    width:85vw;
+    padding:0 10%;
+
+}
+.article-image{
+    height: 500px;
+}
+
 }
 @media screen and (max-width:1160px){
     .general-form{
@@ -910,6 +919,9 @@ border-left:2px solid rgb(0, 119, 255);
     /* width:98%; */
     border:5%;
     top:12%;
+   }
+   .my-article{
+    top:5.5%;
    }
     .article-input{
         font-size:3vw;
