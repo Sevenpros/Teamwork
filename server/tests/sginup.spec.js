@@ -3,41 +3,41 @@ import chaiHttp from 'chai-http';
 import app from '../app';
 
 chai.use(chaiHttp);
-const validUser = {
-  firstName: 'seth',
-  lastName: 'Bizimana',
-  email: 'seth@gmail.com',
-  password: '12345678',
-  gender: 'male',
-  jobRole: 'software engineer',
-  department: 'software development',
-  address: 'kigali',
-  isAdmin: false,
-};
-const validLogin = {
-  email: 'seth@gmail.com',
-  password: '12345678',
-};
-const invalidLogin = {
-  email: 'hello world',
-  password: 'hello',
-};
-const wrongPassword = {
-  email: 'seth@gmail.com',
-  password: 'hello',
-};
+
 describe('SIGN UP', () => {
   it('should post the user info', () => {
+    const validUser = {
+      firstName: 'seth',
+      lastName: 'Bizimana',
+      email: 'seth@gmail.com',
+      password: '12345678',
+      gender: 'male',
+      jobRole: 'software engineer',
+      department: 'software development',
+      address: 'kigali',
+      isAdmin: false,
+    };
     chai.request(app)
       .post('/auth/signup')
       .send(validUser)
       .end((err, res) => {
         expect(res.status).to.equals(201);
         expect(res.body.message).to.be.a('string');
-        expect(res.body.data).to.be.a('string');
+        expect(res.body.data.token).to.be.a('string');
       });
   });
   it('should not post the same user twice', () => {
+    const validUser = {
+      firstName: 'seth',
+      lastName: 'Bizimana',
+      email: 'seth@gmail.com',
+      password: '12345678',
+      gender: 'male',
+      jobRole: 'software engineer',
+      department: 'software development',
+      address: 'kigali',
+      isAdmin: false,
+    };
     chai.request(app)
       .post('/auth/signup')
       .send(validUser)
@@ -59,6 +59,10 @@ describe('SIGN UP', () => {
 
 describe('LOGIN', () => {
   it('should login with valid credentials', () => {
+    const validLogin = {
+      email: 'seth@gmail.com',
+      password: '12345678',
+    };
     chai.request(app)
       .post('/auth/signin')
       .send(validLogin)
@@ -68,6 +72,10 @@ describe('LOGIN', () => {
       });
   });
   it('should login with non existing email address', () => {
+    const invalidLogin = {
+      email: 'hello world',
+      password: 'hello',
+    };
     chai.request(app)
       .post('/auth/signin')
       .send(invalidLogin)
@@ -77,6 +85,10 @@ describe('LOGIN', () => {
       });
   });
   it('should wrong password', () => {
+    const wrongPassword = {
+      email: 'seth@gmail.com',
+      password: 'hello',
+    };
     chai.request(app)
       .post('/auth/signin')
       .send(wrongPassword)

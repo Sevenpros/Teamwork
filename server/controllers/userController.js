@@ -8,7 +8,7 @@ export const signup = (req, res) => {
   if (error) {
     return res.status(400).json({
       status: 400,
-      message: error.details[0].message,
+      message: error.details[0].message.replace(/[/"]/g, ''),
     });
   }
   if (helper.getUser(req.body.email)) {
@@ -22,7 +22,7 @@ export const signup = (req, res) => {
   return res.status(201).json({
     status: 201,
     message: 'User created successfully',
-    data: users[users.length - 1].token,
+    data: { token: users[users.length - 1].token },
   });
 };
 
@@ -45,6 +45,6 @@ export const signin = (req, res) => {
   return res.status(200).json({
     status: 200,
     message: 'user is successfully logged in',
-    data: token,
+    data: { access_token: token },
   });
 };
