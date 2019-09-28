@@ -7,6 +7,6 @@ const router = express.Router();
 router.use(express.json());
 router.post('/auth/signup', signup);
 router.post('/auth/signin', signin);
-// console.log(articleController.shareArticles);
-router.post('/auth/articles', authentication.auth, articleController.shareArticles);
+router.post('/articles', authentication.auth, articleController.shareArticles);
+router.get('/feeds', authentication.auth, articleController.viewSortedArticles);
 export default router;

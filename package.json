@@ -5,8 +5,9 @@
   "main": "index.js",
   "scripts": {
     "start": "babel-watch server/app.js",
-    "test": "mocha --require @babel/register server/tests/*.spec.js --exit",
-    "lint": "eslint server"
+    "test": "nyc mocha --require @babel/register server/tests/*.spec.js --exit",
+    "lint": "eslint server",
+    "coverage": "nyc report --reporter=text-lcov | coveralls"
   },
   "repository": {
     "type": "git",
@@ -27,10 +28,12 @@
     "babel-watch": "^7.0.0",
     "chai": "^4.2.0",
     "chai-http": "^4.3.0",
+    "coveralls": "^3.0.6",
     "eslint": "^6.4.0",
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-plugin-import": "^2.18.2",
-    "mocha": "^6.2.0"
+    "mocha": "^6.2.0",
+    "nyc": "^14.1.1"
   },
   "dependencies": {
     "bcrypt": "^3.0.6",

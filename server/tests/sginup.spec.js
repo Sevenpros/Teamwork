@@ -18,7 +18,7 @@ describe('SIGN UP', () => {
       isAdmin: false,
     };
     chai.request(app)
-      .post('/auth/signup')
+      .post('/api/v1/auth/signup')
       .send(validUser)
       .end((err, res) => {
         expect(res.status).to.equals(201);
@@ -39,7 +39,7 @@ describe('SIGN UP', () => {
       isAdmin: false,
     };
     chai.request(app)
-      .post('/auth/signup')
+      .post('/api/v1/auth/signup')
       .send(validUser)
       .end((err, res) => {
         expect(res.status).to.equals(401);
@@ -48,7 +48,7 @@ describe('SIGN UP', () => {
   });
   it('should not post uncompleted info ', () => {
     chai.request(app)
-      .post('/auth/signup')
+      .post('/api/v1/auth/signup')
       .send('')
       .end((err, res) => {
         expect(res.status).to.equals(400);
@@ -64,7 +64,7 @@ describe('LOGIN', () => {
       password: '12345678',
     };
     chai.request(app)
-      .post('/auth/signin')
+      .post('/api/v1/auth/signin')
       .send(validLogin)
       .end((err, res) => {
         expect(res.status).to.equals(200);
@@ -77,7 +77,7 @@ describe('LOGIN', () => {
       password: 'hello',
     };
     chai.request(app)
-      .post('/auth/signin')
+      .post('/api/v1/auth/signin')
       .send(invalidLogin)
       .end((err, res) => {
         expect(res.status).to.equals(404);
@@ -90,7 +90,7 @@ describe('LOGIN', () => {
       password: 'hello',
     };
     chai.request(app)
-      .post('/auth/signin')
+      .post('/api/v1/auth/signin')
       .send(wrongPassword)
       .end((err, res) => {
         expect(res.status).to.equals(401);
