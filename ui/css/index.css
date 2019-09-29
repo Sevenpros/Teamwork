@@ -987,7 +987,7 @@ border-left:2px solid rgb(0, 119, 255);
     .general-form{
         top:30%;
         /* width:90%; */
-        height:60vh;
+        min-height:60vh;
         margin:0 5%;
 
     }

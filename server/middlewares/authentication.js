@@ -30,7 +30,6 @@ const authentication = {
       req.body.authorName = `${user.firstName} ${user.lastName}`;
       next();
     }
-
     else {
       res.status(403).json({
         status: 403,

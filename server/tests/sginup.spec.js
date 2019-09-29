@@ -5,7 +5,7 @@ import app from '../app';
 chai.use(chaiHttp);
 
 describe('SIGN UP', () => {
-  it('should post the user info', () => {
+  it('employee should be able to signup with valid info', () => {
     const validUser = {
       firstName: 'seth',
       lastName: 'Bizimana',
@@ -26,7 +26,7 @@ describe('SIGN UP', () => {
         expect(res.body.data.token).to.be.a('string');
       });
   });
-  it('should not post the same user twice', () => {
+  it('employee should not signup twice', () => {
     const validUser = {
       firstName: 'seth',
       lastName: 'Bizimana',
@@ -46,10 +46,13 @@ describe('SIGN UP', () => {
         expect(res.body.message).to.be.a('string');
       });
   });
-  it('should not post uncompleted info ', () => {
+  it('should not signup with uncompleted info ', () => {
+    const invalidData = {
+      firstName: 'seth',
+    };
     chai.request(app)
       .post('/api/v1/auth/signup')
-      .send('')
+      .send(invalidData)
       .end((err, res) => {
         expect(res.status).to.equals(400);
         expect(res.body.message).to.be.a('string');
@@ -84,7 +87,7 @@ describe('LOGIN', () => {
         expect(res.body.message).to.be.a('string');
       });
   });
-  it('should wrong password', () => {
+  it('should not login with wrong password', () => {
     const wrongPassword = {
       email: 'seth@gmail.com',
       password: 'hello',

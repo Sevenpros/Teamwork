@@ -4,6 +4,7 @@ import app from '../app';
 
 chai.use(chaiHttp);
 let token;
+let articleId;
 
 describe('Writing Article', () => {
   it('employee should first signup', () => {
@@ -48,6 +49,7 @@ describe('Writing Article', () => {
       .send(validArticle)
       .end((err, res) => {
         expect(res.status).to.eql(200);
+        articleId = res.body.data.articleId;
         expect(res.body.message).to.be.a('string');
         expect(res.body.message).to.eql('article successfully created');
         // expect(res.body.data.title).to.be.a('string');
@@ -76,21 +78,54 @@ describe('View Articles', () => {
         expect(res.body.data).to.be.a('array');
         expect(res.body.message).to.be.a('string');
         expect(res.body.message).to.eql('success');
+        expect(res.body.data).to.be.a('array');
+        // expect(res.body.data.comments).to.be.a('array');
       });
   });
-  it('Employee should not see  articles without token', () => {
+  it('Employee should not see  articles without valid token', () => {
     chai.request(app)
       .get('/api/v1/feeds')
       .end((err, res) => {
         expect(res.status).to.eql(403);
       });
   });
-  it('Employee should not view articles without login or signup', () => {
+});
+describe('Edit Article', () => {
+  it('employee should be able to edit their articles', () => {
+    const toEdit = {
+      title: 'artificial intelligence',
+      article: 'hello world have you ever been stressfull on extreme point?',
+    };
     chai.request(app)
-      .get('/api/v1/feeds')
-      .set('Authorization', `Bearer ${token}56`)
+      .patch(`/api/v1/articles/${articleId}`)
+      .send(toEdit)
+      .set('Authorization', `Bearer ${token}`)
+      .end((err, res) => {
+        expect(res.status).to.eql(200);
+        expect(res.body.message).to.be.a('string');
+        expect(res.body.message).to.eql('article successfully edited');
+      });
+  });
+  it('employee can only edit his/her own artcle', () => {
+    const art = { title: 'cloud computing' };
+    chai.request(app)
+      .patch('/api/v1/articles/art-e1948e30-e293-11e9-8d3f-efdf56617361')
+      .send(art)
+      .set('Authorization', `Bearer ${token}`)
       .end((err, res) => {
         expect(res.status).to.eql(401);
+        expect(res.body.message).to.be.a('string');
+        expect(res.body.message).to.eql('user is not allowed to edit this article');
+      });
+  });
+  it('employee can not edit non existing article', () => {
+    const art = { title: 'cloud computing' };
+    chai.request(app)
+      .patch('/api/v1/articles/a15')
+      .send(art)
+      .set('Authorization', `Bearer ${token}`)
+      .end((err, res) => {
+        expect(res.status).to.eql(404);
       });
   });
 });
