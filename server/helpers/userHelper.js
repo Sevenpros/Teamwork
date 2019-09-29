@@ -5,6 +5,7 @@ import { config } from 'dotenv';
 import bcrypt from 'bcrypt';
 import uuidv1 from 'uuidv1';
 import users from '../models/user';
+import articles from '../models/article';
 
 config();
 
@@ -52,16 +53,34 @@ const helper = {
     };
     return Joi.validate(user, schema);
   },
-  validateArticle(articles) {
+  validateArticle(article) {
     const schema = {
       authorId: Joi.string().required(),
       authorName: Joi.string().required(),
       title: Joi.string().min(3).required(),
       article: Joi.string().min(10).required(),
     };
-    return Joi.validate(articles, schema);
+    return Joi.validate(article, schema);
+  },
+  findArticle(id) {
+    if (!id) {
+      // return;
+    }
+    const article = articles.find((art) => art.articleId === id);
+    return article;
+  },
+  checkAuthor(req) {
+    if (!req.payload) {
+      // return;
+    }
+    const author = this.getUser(req.payload.email);
+    const article = this.findArticle(req.params.id);
+    return author.id === article.authorId;
   },
   securePassword(password) {
+    if (!password) {
+      // return;
+    }
     const hashPasswod = bcrypt.hashSync(password, 10);
     return hashPasswod;
   },

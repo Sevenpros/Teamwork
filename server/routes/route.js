@@ -9,4 +9,5 @@ router.post('/auth/signup', signup);
 router.post('/auth/signin', signin);
 router.post('/articles', authentication.auth, articleController.shareArticles);
 router.get('/feeds', authentication.auth, articleController.viewSortedArticles);
+router.patch('/articles/:id', authentication.auth, articleController.editArticle);
 export default router;

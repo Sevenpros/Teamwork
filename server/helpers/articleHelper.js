@@ -1,4 +1,3 @@
-import Joi from 'joi';
 import uuidv1 from 'uuidv1';
 import moment from 'moment';
 
@@ -9,7 +8,7 @@ class ArticleHelper {
     this.authorName = authorName;
     this.title = title;
     this.article = article;
-    this.createdOn = moment().format('YY-MM-DD');
+    this.createdOn = moment().format('YY-MM-DD H:m');
     this.comments = [];
   }
 }

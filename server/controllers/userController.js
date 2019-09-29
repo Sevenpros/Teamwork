@@ -4,25 +4,31 @@ import helper from '../helpers/userHelper';
 import users from '../models/user';
 
 export const signup = (req, res) => {
+  let status;
+  let message;
+  let data;
   const { error } = helper.validateUser(req.body);
   if (error) {
-    return res.status(400).json({
-      status: 400,
-      message: error.details[0].message.replace(/[/"]/g, ''),
+    status = 400;
+    message = error.details[0].message.replace(/[/"]/g, '');
+    return res.status(status).json({
+      status,
+      message,
     });
   }
   if (helper.getUser(req.body.email)) {
-    res.status(401).json({
-      status: 401,
-      message: 'Email already exist',
-    });
+    status = 401;
+    message = 'Email already exist';
+  } else {
+    helper.addUser(req);
+    status = 201;
+    message = 'User created successfully';
+    data = { token: users[users.length - 1].token };
   }
-
-  helper.addUser(req);
-  return res.status(201).json({
-    status: 201,
-    message: 'User created successfully',
-    data: { token: users[users.length - 1].token },
+  return res.status(status).json({
+    status,
+    message,
+    data,
   });
 };
 
