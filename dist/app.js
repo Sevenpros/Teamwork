@@ -14,6 +14,9 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "d
 var app = (0, _express["default"])();
 app.use(_express["default"].json());
 var port = process.env.PORT || 3000;
+app.get('/', function (req, res) {
+  res.send('WELLCOME TO TEAMWORK APIs');
+});
 app.use('/api/v1', _route["default"]);
 app.listen(port, function () {
   // eslint-disable-next-line no-console

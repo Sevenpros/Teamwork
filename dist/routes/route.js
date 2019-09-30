@@ -23,5 +23,6 @@ router.post('/auth/signin', _userController.signin);
 router.post('/articles', _authentication["default"].auth, _articleController["default"].shareArticles);
 router.get('/feeds', _authentication["default"].auth, _articleController["default"].viewSortedArticles);
 router.patch('/articles/:id', _authentication["default"].auth, _articleController["default"].editArticle);
+router["delete"]('/articles/:id', _authentication["default"].auth, _articleController["default"].deleteArticle);
 var _default = router;
 exports["default"] = _default;

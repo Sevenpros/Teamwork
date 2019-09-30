@@ -102,6 +102,33 @@ var articleController = {
         article: articleToEdit.article
       }
     });
+  },
+  deleteArticle: function deleteArticle(req, res) {
+    var status;
+    var message;
+
+    var toDelete = _userHelper["default"].findArticle(req.params.id);
+
+    if (toDelete) {
+      if (_userHelper["default"].checkAuthor(req)) {
+        var index = _article["default"].indexOf(toDelete);
+
+        _article["default"].splice(index, 1);
+
+        return res.sendStatus(204);
+      }
+
+      status = 401;
+      message = 'authentication failed';
+    } else {
+      status = 404;
+      message = 'article not found';
+    }
+
+    return res.status(status).json({
+      status: status,
+      message: message
+    });
   }
 };
 var _default = articleController;
