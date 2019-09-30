@@ -129,3 +129,32 @@ describe('Edit Article', () => {
       });
   });
 });
+describe('Delete Article', () => {
+  it('employees should be able to delete their articles', () => {
+   
+    chai.request(app)
+      .delete(`/api/v1/articles/${articleId}`)
+      .set('Authorization', `Bearer ${token}`)
+      .end((err, res) => {
+        expect(res.status).to.eql(204);
+      });
+  });
+  it('employee can only delete his/her own artcle', () => {
+    chai.request(app)
+      .delete('/api/v1/articles/art-e1948e30-e293-11e9-8d3f-efdf56617361')
+      .set('Authorization', `Bearer ${token}`)
+      .end((err, res) => {
+        expect(res.status).to.eql(401);
+        expect(res.body.message).to.be.a('string');
+        expect(res.body.message).to.eql('authentication failed');
+      });
+  });
+  it('employee can not delete non existing article', () => {
+    chai.request(app)
+      .delete('/api/v1/articles/a15')
+      .set('Authorization', `Bearer ${token}`)
+      .end((err, res) => {
+        expect(res.status).to.eql(404);
+      });
+  });
+});
