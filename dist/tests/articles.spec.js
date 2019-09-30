@@ -117,3 +117,22 @@ describe('Edit Article', function () {
     });
   });
 });
+describe('Delete Article', function () {
+  it('employees should be able to delete their articles', function () {
+    _chai["default"].request(_app["default"])["delete"]("/api/v1/articles/".concat(articleId)).set('Authorization', "Bearer ".concat(token)).end(function (err, res) {
+      (0, _chai.expect)(res.status).to.eql(204);
+    });
+  });
+  it('employee can only delete his/her own artcle', function () {
+    _chai["default"].request(_app["default"])["delete"]('/api/v1/articles/art-e1948e30-e293-11e9-8d3f-efdf56617361').set('Authorization', "Bearer ".concat(token)).end(function (err, res) {
+      (0, _chai.expect)(res.status).to.eql(401);
+      (0, _chai.expect)(res.body.message).to.be.a('string');
+      (0, _chai.expect)(res.body.message).to.eql('authentication failed');
+    });
+  });
+  it('employee can not delete non existing article', function () {
+    _chai["default"].request(_app["default"])["delete"]('/api/v1/articles/a15').set('Authorization', "Bearer ".concat(token)).end(function (err, res) {
+      (0, _chai.expect)(res.status).to.eql(404);
+    });
+  });
+});
