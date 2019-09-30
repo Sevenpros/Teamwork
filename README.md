@@ -3,7 +3,7 @@
 [![Coverage Status](https://coveralls.io/repos/github/Sevenpros/Teamwork/badge.svg)](https://coveralls.io/github/Sevenpros/Teamwork)
 [![Build Status](https://travis-ci.org/Sevenpros/Teamwork.svg?branch=develop)](https://travis-ci.org/Sevenpros/Teamwork)
 **Teamwork** is application that helps employees within an organization or company to collaborate each other in most efficient way. 
-[Teamwork screenshoot](./ui/images/landpage.jpg)
+![Screen (01)](https://github.com/Sevenpros/Teamwork/blob/develop/ui/images/landpage.JPG)
 
 
 # What Teamwork does
