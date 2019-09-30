@@ -78,6 +78,29 @@ const articleController = {
       },
     });
   },
+  deleteArticle(req, res) {
+    let status;
+    let message;
+    const toDelete = helper.findArticle(req.params.id);
+    if(toDelete) {
+      if(helper.checkAuthor(req)) {
+        const index = articles.indexOf(toDelete);
+        articles.splice(index, 1);
+        return res.sendStatus(204);
+      }
+      status = 401;
+      message = 'authentication failed';
+      
+    } else{
+    status = 404;
+    message = 'article not found';
+    }
+    return res.status(status).json({
+      status,
+      message,
+    })
+  }
+  
 };
 
 export default articleController;
