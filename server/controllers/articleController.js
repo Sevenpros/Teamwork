@@ -1,4 +1,5 @@
 import moment from 'moment';
+import uuidv1 from 'uuidv1';
 import articles from '../models/article';
 import ArticleHelper from '../helpers/articleHelper';
 import helper from '../helpers/userHelper';
@@ -82,25 +83,60 @@ const articleController = {
     let status;
     let message;
     const toDelete = helper.findArticle(req.params.id);
-    if(toDelete) {
-      if(helper.checkAuthor(req)) {
+    if (toDelete) {
+      if (helper.checkAuthor(req)) {
         const index = articles.indexOf(toDelete);
         articles.splice(index, 1);
         return res.sendStatus(204);
       }
       status = 401;
       message = 'authentication failed';
-      
-    } else{
-    status = 404;
-    message = 'article not found';
+    } else {
+      status = 404;
+      message = 'article not found';
     }
     return res.status(status).json({
       status,
       message,
-    })
-  }
-  
+    });
+  },
+  addComment(req, res) {
+    let status;
+    let message;
+    const { error } = helper.validateComment(req.body);
+    if (error) {
+      status = 400;
+      message = error.details[0].message.replace(/[/"]/g, '');
+      return res.status(status).json({
+        status,
+        message,
+      });
+    }
+    const articleToComment = helper.findArticle(req.params.id);
+    if (articleToComment) {
+      const author = helper.getUser(req.payload.email);
+      const userComment = {
+        commentId: `$comment-${uuidv1()}`,
+        authorId: author.id,
+        comment: req.body.comment,
+      };
+      articleToComment.comments.push(userComment);
+      status = 201;
+      message = 'comment added successfully';
+      return res.status(status).json({
+        status,
+        message,
+        data: req.body.comment,
+      });
+    }
+    status = 404;
+    message = 'article with provided id is not found';
+    return res.status(status).json({
+      status,
+      message,
+    });
+  },
+
 };
 
 export default articleController;

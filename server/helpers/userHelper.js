@@ -62,6 +62,14 @@ const helper = {
     };
     return Joi.validate(article, schema);
   },
+  validateComment(comment) {
+    const schema = {
+      authorName: Joi.string(),
+      authorId: Joi.string(),
+      comment: Joi.string().min(5).required(),
+    };
+    return Joi.validate(comment, schema);
+  },
   findArticle(id) {
     if (!id) {
       // return;
