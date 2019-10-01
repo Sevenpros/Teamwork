@@ -2,10 +2,14 @@ import express from 'express';
 import router from './routes/route';
 
 const app = express();
+app.use(express.json());
 
 const port = process.env.PORT || 3000;
-app.use('/', router);
-app.use('/', router);
+
+app.get('/', (req, res) => {
+  res.send('WELLCOME TO TEAMWORK APIs');
+});
+app.use('/api/v1', router);
 
 
 app.listen(port, () => {
