@@ -182,7 +182,7 @@ describe('Add Comment', () => {
         expect(res.body.message).to.eql('article with provided id is not found');
       });
   });
-  it('authentification should verified', () => {
+  it('authentification should be verified', () => {
     const comment = { comment: 'hello world' };
     chai.request(app)
       .post('/api/v1/articles/art-e191/comments')
@@ -191,6 +191,33 @@ describe('Add Comment', () => {
         expect(res.status).to.eql(403);
         expect(res.body.message).to.be.a('string');
         expect(res.body.message).to.eql('Forbidden');
+      });
+  });
+});
+describe('View Specific Article', () => {
+  it('employees should be able to view a specific article', () => {
+    chai.request(app)
+      .get('/api/v1/articles/art-e1948e30-e293-11e9-8d3f-efdf56617361')
+      .set('Authorization', `Bearer ${token}`)
+      .end((err, res) => {
+        expect(res.status).to.eql(200);
+      });
+  });
+  it('employee can only view articles with valid token', () => {
+    chai.request(app)
+      .get('/api/v1/articles/art-e1948e30-e293-11e9-8d3f-efdf56617361')
+      .end((err, res) => {
+        expect(res.status).to.eql(403);
+        expect(res.body.message).to.be.a('string');
+        expect(res.body.message).to.eql('Forbidden');
+      });
+  });
+  it('employee can not view article with wrong Given id', () => {
+    chai.request(app)
+      .get('/api/v1/articles/a15')
+      .set('Authorization', `Bearer ${token}`)
+      .end((err, res) => {
+        expect(res.status).to.eql(404);
       });
   });
 });

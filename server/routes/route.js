@@ -12,4 +12,5 @@ router.get('/feeds', authentication.auth, articleController.viewSortedArticles);
 router.patch('/articles/:id', authentication.auth, articleController.editArticle);
 router.delete('/articles/:id', authentication.auth, articleController.deleteArticle);
 router.post('/articles/:id/comments', authentication.auth, articleController.addComment);
+router.get('/articles/:id', authentication.auth, articleController.viewOneArticle);
 export default router;

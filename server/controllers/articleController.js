@@ -30,7 +30,7 @@ const articleController = {
   viewOneArticle(req, res) {
     const article = helper.findArticle(req.params.id);
     if (!article) {
-      res.status(404).json({
+      return res.status(404).json({
         status: 404,
         message: 'Articles not found',
       });
