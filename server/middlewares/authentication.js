@@ -21,7 +21,7 @@ const authentication = {
       const { email } = req.payload;
       const user = helper.getUser(email);
       if (!user) {
-        res.status(401).json({
+        return res.status(401).json({
           status: 401,
           message: 'Aunthentication failed',
         });
@@ -29,8 +29,7 @@ const authentication = {
       req.body.authorId = user.id;
       req.body.authorName = `${user.firstName} ${user.lastName}`;
       next();
-    }
-    else {
+    } else {
       res.status(403).json({
         status: 403,
         message: 'Forbidden',

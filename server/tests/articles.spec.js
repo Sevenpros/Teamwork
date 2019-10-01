@@ -131,7 +131,6 @@ describe('Edit Article', () => {
 });
 describe('Delete Article', () => {
   it('employees should be able to delete their articles', () => {
-   
     chai.request(app)
       .delete(`/api/v1/articles/${articleId}`)
       .set('Authorization', `Bearer ${token}`)
@@ -155,6 +154,43 @@ describe('Delete Article', () => {
       .set('Authorization', `Bearer ${token}`)
       .end((err, res) => {
         expect(res.status).to.eql(404);
+      });
+  });
+});
+describe('Add Comment', () => {
+  it('employee can add comment to the article', () => {
+    const comment = { comment: 'hello world' };
+    chai.request(app)
+      .post('/api/v1/articles/art-e1948e30-e293-11e9-8d3f-efdf56617361/comments')
+      .send(comment)
+      .set('Authorization', `Bearer ${token}`)
+      .end((err, res) => {
+        expect(res.status).to.eql(201);
+        expect(res.body.message).to.be.a('string');
+        expect(res.body.message).to.eql('comment added successfully');
+      });
+  });
+  it('employee can not add comment with wrong article id', () => {
+    const comment = { comment: 'hello world' };
+    chai.request(app)
+      .post('/api/v1/articles/art-e191/comments')
+      .send(comment)
+      .set('Authorization', `Bearer ${token}`)
+      .end((err, res) => {
+        expect(res.status).to.eql(404);
+        expect(res.body.message).to.be.a('string');
+        expect(res.body.message).to.eql('article with provided id is not found');
+      });
+  });
+  it('authentification should verified', () => {
+    const comment = { comment: 'hello world' };
+    chai.request(app)
+      .post('/api/v1/articles/art-e191/comments')
+      .send(comment)
+      .end((err, res) => {
+        expect(res.status).to.eql(403);
+        expect(res.body.message).to.be.a('string');
+        expect(res.body.message).to.eql('Forbidden');
       });
   });
 });

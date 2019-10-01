@@ -8,7 +8,7 @@ const port = process.env.PORT || 3000;
 
 app.get('/', (req, res) => {
   res.send('WELLCOME TO TEAMWORK APIs');
-})
+});
 app.use('/api/v1', router);
 
 

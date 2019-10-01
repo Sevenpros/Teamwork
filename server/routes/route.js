@@ -11,4 +11,5 @@ router.post('/articles', authentication.auth, articleController.shareArticles);
 router.get('/feeds', authentication.auth, articleController.viewSortedArticles);
 router.patch('/articles/:id', authentication.auth, articleController.editArticle);
 router.delete('/articles/:id', authentication.auth, articleController.deleteArticle);
+router.post('/articles/:id/comments', authentication.auth, articleController.addComment);
 export default router;
