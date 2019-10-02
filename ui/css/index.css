@@ -211,12 +211,14 @@ input::placeholder{
     color:rgb(40, 76, 236);
 }
 .user-header{
-    min-height:70px;
-    /* width:100%; */
+    height:70px;
+    width:100%;
     background: linear-gradient(to bottom, rgb(12, 125, 255), rgb(16, 181, 252)); 
-    /* position:fixed; */
+     position:fixed; 
     display:flex;
     top:0;
+    z-index: 1;
+    
 
 }
 .user-logo-nav{
@@ -278,7 +280,9 @@ input::placeholder{
     line-height:120%;
     padding:0.2%;
     border-radius:5px;
+    position: absolute;
     display: none;
+    bottom: 10%;
     /* border: 1px solid blue; */
       
     /* left:90%; */
@@ -396,7 +400,7 @@ input::placeholder{
 }
 
 .profile-switch{
-    width:30%;
+    width:33%;
 }
 .profile-switch:focus{
 color:black;
@@ -407,12 +411,12 @@ color:black;
  color:rgb(2, 77, 238)
 }
 .article-switch{
-    width:30%;
+    width:33%;
     text-align:center;
 }
 .trend-switch{
 width:35%;
-text-align:center;
+text-align:right;
 }
 .article-input{
     /* width:100%; */
@@ -423,7 +427,7 @@ text-align:center;
     border-bottom:1px solid rgba(0, 0, 0, 0.24);
     font-size:1em;
     line-height:1.5em;
-    padding-top:5%;
+    padding-top:1%;
     
     
 }
@@ -447,7 +451,7 @@ text-align:center;
 }
 .new-button{
     width: 100%;
-    font-size:1.7vw;
+    font-size:1.6vw;
     margin-top:35%;
     text-decoration: none;
 }
@@ -582,11 +586,15 @@ div:empty:before {
  
 }
 .art-date{
-  margin-left:50%;
+  
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   color:rgba(43, 42, 42, 0.801);
   font-size:0.8em;
   font-weight:bold;
+  width: 50%;
+}
+.todate{
+    float:right;
 }
 .art-body{
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
@@ -649,8 +657,9 @@ margin-top:2%;
   .comments-area{
       height: 170px;
       background: rgba(128, 128, 128, 0.144);
-      margin-top: 2%;
+      margin-top: 4%;
       overflow: auto; /*Enable scroll if needed */
+      padding-top:2%;
     }
   .content-delete{
       width:30%;
@@ -930,13 +939,17 @@ border-left:2px solid rgb(0, 119, 255);
 
    }
    .cancel-btn{
-       padding:3% 7%;
-       font-size:3vw;
+      font-size:3vw;
        border:1px solid blue;
-   }
+   } 
+   .delete-btn{
+    font-size:3vw;
+ } 
+ .delete-header{
+     font-size:3vw;
+ }
    .modal-content{
        width:80%;
-       
    }
    .article-details{
        font-size:3vw;
@@ -970,6 +983,12 @@ border-left:2px solid rgb(0, 119, 255);
     .article-shot{
         height:35vh;
     }
+    .delete-article{
+        height: 43px;
+    }
+    .article{
+        height:60px;
+    }
     .post-btn{
         font-size:3vw;
     }
@@ -979,6 +998,9 @@ border-left:2px solid rgb(0, 119, 255);
     }
     .user-title{
         font-size:2vw;
+    }
+    .menu-items{
+        font-size: 1.3vw;
     }
     .art-body{
         font-size:3.5vw;
@@ -994,7 +1016,36 @@ border-left:2px solid rgb(0, 119, 255);
     .trend-btn{
         font-size:3vw;
     }
+    .user-title{
+        font-size: 2.5vw;
+    }
+    .p-comment{
+        font-size:2.7vw;
+    }
     
+    .todate{
+        font-size: 2vw;
+    }
+    .input-comment{
+      font-size: 3vw;
+    }
+    .new-button{
+        font-size:3.5vw;
+    }
+    .searching{
+        width: 40%;
+        
+    }
+    .searching-input{
+        padding: 5% 2%;
+    }
+    .searching-input::placeholder{
+        font-size:1.7vw;
+
+    }
+    .nav-menu-items{
+        width: 60%
+    }
 }
 @media screen and (max-width: 800px) {
     .signup-header{
@@ -1040,11 +1091,13 @@ border-left:2px solid rgb(0, 119, 255);
    .searching-input{
        padding:5%;
    }
+   
   }
   @media screen and (max-width: 550px){
       .general-form{
           top:25%;
       }
+      
      
     
     .user-image{
@@ -1129,7 +1182,22 @@ border-left:2px solid rgb(0, 119, 255);
         width:30px;
         height:30px;
     }
-   
+   .delete-article{
+       height:27px;
+   }
+   .article{
+       height: 40px;
+   }
     
 }
-
+@media screen and (width:320px){
+    .icons-image{
+        height:20px;
+    }
+    .delete-article{
+        height: 15px;
+    }
+    .edit-icon{
+        height: 17px;
+    }
+}
