@@ -1,11 +1,12 @@
+/* eslint-disable class-methods-use-this */
 import moment from 'moment';
 import uuidv1 from 'uuidv1';
 import articles from '../models/article';
 import ArticleHelper from '../helpers/articleHelper';
 import Validation from '../helpers/validation';
-import helper from '../helpers/userHelper';
+import Helper from '../helpers/userHelper';
 
-const articleController = {
+class ArticleController {
   shareArticles(req, res) {
     const { error } = Validation.validateArticle(req.body);
     if (error) {
@@ -27,7 +28,8 @@ const articleController = {
         articleId: articles[articles.length - 1].articleId,
       },
     });
-  },
+  }
+
   viewOneArticle(req, res) {
     const article = ArticleHelper.findArticle(req.params.id);
     if (!article) {
@@ -41,7 +43,8 @@ const articleController = {
       message: 'success',
       data: article,
     });
-  },
+  }
+
   viewSortedArticles(req, res) {
     const sortedArticles = articles.sort((a, b) => moment(new Date(b.createdOn)).format('YYYYMMDD') - moment(new Date(a.createdOn)).format('YYYYMMDD'));
     return res.status(200).json({
@@ -49,7 +52,8 @@ const articleController = {
       message: 'success',
       data: sortedArticles,
     });
-  },
+  }
+
   editArticle(req, res) {
     const articleToEdit = ArticleHelper.findArticle(req.params.id);
 
@@ -79,7 +83,8 @@ const articleController = {
         article: articleToEdit.article,
       },
     });
-  },
+  }
+
   deleteArticle(req, res) {
     let status;
     let message;
@@ -100,7 +105,8 @@ const articleController = {
       status,
       message,
     });
-  },
+  }
+
   addComment(req, res) {
     let status;
     let message;
@@ -115,7 +121,7 @@ const articleController = {
     }
     const articleToComment = ArticleHelper.findArticle(req.params.id);
     if (articleToComment) {
-      const author = helper.getUser(req.payload.email);
+      const author = Helper.getUser(req.payload.email);
       const userComment = {
         commentId: `$comment-${uuidv1()}`,
         authorId: author.id,
@@ -136,8 +142,7 @@ const articleController = {
       status,
       message,
     });
-  },
+  }
+}
 
-};
-
-export default articleController;
+export default new ArticleController();

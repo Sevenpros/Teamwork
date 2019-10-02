@@ -1,3 +1,4 @@
+/* eslint-disable class-methods-use-this */
 /* eslint-disable import/prefer-default-export */
 import jwt from 'jsonwebtoken';
 import { config } from 'dotenv';
@@ -7,18 +8,21 @@ import users from '../models/user';
 
 config();
 
-const helper = {
+class Helper {
   getUser(email) {
     const user = users.find((u) => u.email === email);
     return user;
-  },
+  }
+
   generateUserToken(email) {
     const token = jwt.sign({ email }, process.env.TOKEN_KEY);
     return token;
-  },
+  }
+
   matchUser(plain, hash) {
     return bcrypt.compareSync(plain, hash);
-  },
+  }
+
   addUser(req) {
     const newUser = {
       id: `emp-${uuidv1()}`,
@@ -34,7 +38,7 @@ const helper = {
       isAdmin: false,
     };
     users.push(newUser);
-  },
+  }
 
   securePassword(password) {
     if (!password) {
@@ -42,6 +46,6 @@ const helper = {
     }
     const hashPasswod = bcrypt.hashSync(password, 10);
     return hashPasswod;
-  },
-};
-export default helper;
+  }
+}
+export default new Helper();
