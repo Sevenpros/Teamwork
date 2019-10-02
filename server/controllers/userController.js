@@ -2,12 +2,13 @@
 
 import helper from '../helpers/userHelper';
 import users from '../models/user';
+import Validation from '../helpers/validation';
 
 export const signup = (req, res) => {
   let status;
   let message;
   let data;
-  const { error } = helper.validateUser(req.body);
+  const { error } = Validation.validateUser(req.body);
   if (error) {
     status = 400;
     message = error.details[0].message.replace(/[/"]/g, '');
