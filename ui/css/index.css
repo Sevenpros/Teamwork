@@ -212,11 +212,13 @@ input::placeholder{
 }
 .user-header{
     height:70px;
-    /* width:100%; */
+    width:100%;
     background: linear-gradient(to bottom, rgb(12, 125, 255), rgb(16, 181, 252)); 
-    /* position:fixed; */
+     position:fixed; 
     display:flex;
     top:0;
+    z-index: 1;
+    
 
 }
 .user-logo-nav{
@@ -398,7 +400,7 @@ input::placeholder{
 }
 
 .profile-switch{
-    width:30%;
+    width:33%;
 }
 .profile-switch:focus{
 color:black;
@@ -409,12 +411,12 @@ color:black;
  color:rgb(2, 77, 238)
 }
 .article-switch{
-    width:30%;
+    width:33%;
     text-align:center;
 }
 .trend-switch{
 width:35%;
-text-align:center;
+text-align:right;
 }
 .article-input{
     /* width:100%; */
@@ -449,7 +451,7 @@ text-align:center;
 }
 .new-button{
     width: 100%;
-    font-size:1.7vw;
+    font-size:1.6vw;
     margin-top:35%;
     text-decoration: none;
 }
