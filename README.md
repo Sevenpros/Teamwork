@@ -26,3 +26,33 @@ employee can comment on any article of interest post by colleagues
 
 * **Flag article or comment**
 employees can flag a comment or article as inappropriate
+## User Interface 
+To Navigate to the user interface just click ![Here](https://sevenpros.github.io/Teamwork/ui/html/)
+
+## API Endpoints
+This application have API endpoints Hosted on **heroku** ![Teamwork](teamwork-seth.herokuapp.com) which can be used to perform different tasks mentioned above.
+* **Sign up API**
+*POST/* teamwork-seth.herokuapp.com/api/v1/auth/signup is used to Create new account
+* **Sign in API**
+*POST/* teamwork-seth.herokuapp.com/api/v1/auth/signin is used to login into the app
+* **Write Article API**
+*POST/* teamwork-seth.herokuapp.com/api/v1/articles is used to Write new Article
+* **View All Articles API**
+*GET/* teamwork-seth.herokuapp.com/api/v1/feeds is used to View All articles
+* **View Specific Article API**
+*GET/* teamwork-seth.herokuapp.com/api/v1/articles/:id is view specific article
+* **Edit Article API**
+*PATCH/* teamwork-seth.herokuapp.com/api/v1/articles/:id is used to edit an article
+* **Delete article API**
+*DELETE/* teamwork-seth.herokuapp.com/api/v1/articles/:id is used to delete article
+* **Comment an article API**
+*POST/* teamwork-seth.herokuapp.com/api/v1/articles/:id/comments is used to Comment on article
+
+# HOW TO INSTALL
+If you want to use this application localy on your pc you will need to follow bellow instructions
+* you have to clone this project from github (make sure you have git installed)
+by going on github website click on **Clone**
+* inside your command line interface(whaterver cli you're using ) wtire _git clone 'Ctrl + v'_ 
+* Install node verision 10.6.0 (it will come along with the npm)
+* you have to install all depedencies using this command: _npm install_
+* enjoy your app!!!
