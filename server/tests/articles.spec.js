@@ -22,6 +22,7 @@ describe('Writing Article', () => {
     chai.request(app)
       .post('/api/v1/auth/signup')
       .send(validUser)
+      // eslint-disable-next-line no-unused-vars
       .end((err, res) => {
         // token = res.body.data.token;
       });
