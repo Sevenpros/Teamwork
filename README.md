@@ -47,6 +47,7 @@ This application have API endpoints Hosted on **heroku** ![Teamwork](teamwork-se
 *DELETE/* teamwork-seth.herokuapp.com/api/v1/articles/:id is used to delete article
 * **Comment an article API**
 *POST/* teamwork-seth.herokuapp.com/api/v1/articles/:id/comments is used to Comment on article
+* [API DOCUMENT](https://documenter.getpostman.com/view/8977299/SVtR1VBW)
 
 # HOW TO INSTALL
 If you want to use this application localy on your pc you will need to follow bellow instructions

@@ -3,6 +3,7 @@ import jwt from 'jsonwebtoken';
 import helper from '../helpers/userHelper';
 
 const authentication = {
+  // eslint-disable-next-line consistent-return
   auth(req, res, next) {
     const bearerHeader = req.headers.authorization;
     // console.log('bearer: ' +bearerHeader);
