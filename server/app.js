@@ -1,6 +1,8 @@
 import express from 'express';
+import dotenv from 'dotenv';
 import router from './routes/route';
 
+dotenv.config();
 const app = express();
 app.use(express.json());
 
@@ -11,6 +13,9 @@ app.get('/', (req, res) => {
 });
 app.use('/api/v1', router);
 
+app.use('/*', (req, res) => {
+  res.send('The Provided Route doesn\'t exist');
+});
 
 app.listen(port, () => {
   // eslint-disable-next-line no-console
