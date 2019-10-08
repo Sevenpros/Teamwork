@@ -277,32 +277,32 @@ input::placeholder{
     font-size:1vw;
     color:rgb(1, 62, 87);
     /* margin:0; */
-    width:120px;
+    width:80%;
     line-height:120%;
-    padding:0.2%;
+    padding:1.5%;
     border-radius:5px;
     position: absolute;
     display: none;
-    bottom: 10%;
-    /* border: 1px solid blue; */
+    bottom: 5%;
+    border: 1px solid rgba(253, 253, 253, 0.637); 
       
     /* left:90%; */
 }
 .user-menu li{
     padding-top:0%;
-    width: 60%;
+    /* width: 100%; */
     
 }
 .user-menu li a{
     color:white;
     font-weight:bolder;
+    text-decoration: none;
 }
 .user-menu li a:hover{
-    color:rgb(177, 173, 173);
+    color:rgb(4, 103, 196);
 }
-.user-menu li {
-    color:rgb(192, 189, 188);
-    background: rgb(28, 8, 141);
+.user-menu:hover{
+    background: white;
 }
 
 
