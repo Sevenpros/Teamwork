@@ -290,16 +290,21 @@ input::placeholder{
 }
 .user-menu li{
     padding-top:0%;
+    width: 60%;
+    
 }
 .user-menu li a{
     color:white;
     font-weight:bolder;
 }
 .user-menu li a:hover{
-    color:rgb(88, 19, 2);
-   
-
+    color:rgb(177, 173, 173);
 }
+.user-menu li {
+    color:rgb(192, 189, 188);
+    background: rgb(28, 8, 141);
+}
+
 
 
 .main-tab{
