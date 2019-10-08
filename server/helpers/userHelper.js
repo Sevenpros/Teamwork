@@ -4,7 +4,9 @@ import jwt from 'jsonwebtoken';
 import { config } from 'dotenv';
 import bcrypt from 'bcrypt';
 import uuidv1 from 'uuidv1';
-import users from '../models/user';
+import { Pool } from 'pg';
+import users from '../models/users';
+
 
 config();
 
