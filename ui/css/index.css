@@ -262,6 +262,7 @@ input::placeholder{
     font-weight:bold;
     position:relative;
     font-size:1vw;
+    
 }
 .menu-items:hover {
     color:rgb(1, 57, 110);
@@ -295,7 +296,9 @@ input::placeholder{
     font-weight:bolder;
 }
 .user-menu li a:hover{
-    color:rgb(1, 58, 122);
+    color:rgb(88, 19, 2);
+   
+
 }
 
 
