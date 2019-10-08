@@ -8,6 +8,10 @@ import Helper from '../helpers/userHelper';
 
 class ArticleController {
   shareArticles(req, res) {
+    const { email } = req.payload;
+    const user = Helper.getUser(email);
+    req.body.authorId = user.id;
+    req.body.authorName = user.firstName;
     const { error } = Validation.validateArticle(req.body);
     if (error) {
       res.status(400).json({

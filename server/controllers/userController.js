@@ -2,7 +2,7 @@
 /* eslint-disable import/prefer-default-export */
 
 import Helper from '../helpers/userHelper';
-import users from '../models/user';
+import users from '../models/users';
 import Validation from '../helpers/validation';
 
 class User {
