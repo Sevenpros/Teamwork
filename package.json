@@ -7,7 +7,7 @@
     "lint": "eslint server",
     "test": "mocha  --require @babel/register server/tests/*.spec.js --exit",
     "coveralls": "nyc report --reporter=text-lcov | coveralls",
-    "start": "babel-watch server/app.js",
+    "start": "nodemon --exec babel-node server/app.js",
     "build": "babel server --out-dir dist --ignore 'server/**/**.spec.js','src/**/.test.js'"
   },
   "repository": {
@@ -33,6 +33,7 @@
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-plugin-import": "^2.18.2",
     "mocha": "^6.2.0",
+    "nodemon": "^1.19.3",
     "nyc": "^14.1.1"
   },
   "dependencies": {

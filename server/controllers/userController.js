@@ -2,7 +2,6 @@
 /* eslint-disable import/prefer-default-export */
 
 import Helper from '../helpers/userHelper';
-import UserModel from '../models/user';
 import users from '../models/users';
 import Validation from '../helpers/validation';
 
@@ -24,26 +23,14 @@ class User {
       status = 401;
       message = 'Email already exist';
     } else {
-      try {
-        UserModel.addNewUser(req.body);
-        return res.status(200).json({
-          status: 201,
-          message: 'user created successfuly',
-          data: {
-            token: Helper.generateUserToken(req.body.email),
-          },
-        });
-      } catch (err) {
-        res.status(401).json({
-          status: 401,
-          message: `error occured: ${err}`,
-        });
-      }
+      Helper.addUser(req);
+      status = 201;
+      message = 'User created successfully';
+      data = { token: users[users.length - 1].token };
     }
-
     return res.status(status).json({
-      status: 400,
-      message: 'something went wrong',
+      status,
+      message,
       data,
     });
   }

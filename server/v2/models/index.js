@@ -11,13 +11,8 @@ pool.on('connect', () => {
 });
 
 
-const connectDb = (query) => {
-  pool.query(query)
-    .then((res) => {
-      return res.rows[0];
-    })
-    .catch((err) => {
-      return 401;
-    });
-};
+const connectDb = (query) => pool.query(query)
+  .then((res) => res.rows)
+  .catch((err) => err);
+
 export default connectDb;
