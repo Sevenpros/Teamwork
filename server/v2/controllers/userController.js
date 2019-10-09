@@ -12,7 +12,6 @@ class UserController {
       });
     }
     const userResult = await UserModel.getUser(req.body.email);
-    console.log(userResult);
     if (userResult.length) {
       return res.status(401).json({
         status: 401,
