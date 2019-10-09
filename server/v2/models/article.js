@@ -39,17 +39,8 @@ class Articles {
 
   async updateTitle(article) {
     const query = {
-      text: 'UPDATE articles SET title = $2 WHERE article_id = $1',
-      values: [article.articleId, article.title],
-    };
-    const result = await connectDb(query);
-    return result;
-  }
-
-  async updateArticle(article) {
-    const query = {
-      text: 'UPDATE articles SET article = $2 WHERE article_id = $1',
-      values: [article.articleId, article.article],
+      text: 'UPDATE articles SET title = $2, article = $3 WHERE article_id = $1',
+      values: [article.articleId, article.title, article.article],
     };
     const result = await connectDb(query);
     return result;

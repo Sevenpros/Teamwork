@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "lint": "eslint server",
-    "test": "mocha  --require @babel/polyfill --require @babel/register server/tests/*.spec.js --exit",
-    "coveralls": "nyc report --reporter=text-lcov | coveralls",
+    "test": "nyc mocha  --require @babel/polyfill --require @babel/register server/tests/*.spec.js --exit",
+    "coverage": "nyc report --reporter=text-lcov | coveralls",
     "start": "nodemon --exec babel-node server/app.js",
     "build": "babel server --out-dir dist --ignore 'server/**/**.spec.js','src/**/.test.js'"
   },
