@@ -2,6 +2,7 @@
 /* eslint-disable import/prefer-default-export */
 import jwt from 'jsonwebtoken';
 import helper from '../helpers/userHelper';
+import Validation from '../helpers/validation';
 
 class Authentication {
   auth(req, res, next) {
@@ -25,6 +26,16 @@ class Authentication {
         message: 'Forbidden',
       });
     }
+  }
+
+  isValidUser(req, res, next) {
+    const { error } = Validation.validateUser(req.body);
+    if (error) {
+      return res.status(401).json({
+        message: error.details[0].message.replace(/[/"]/g, ''),
+      });
+    }
+    next();
   }
 }
 export default new Authentication();
