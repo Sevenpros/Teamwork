@@ -12,7 +12,6 @@ class UserController {
       });
     }
     const userResult = await UserModel.getUser(req.body.email);
-    console.log(userResult);
     if (userResult.length) {
       return res.status(401).json({
         status: 401,
@@ -41,6 +40,29 @@ class UserController {
     return res.status(400).json({
       status: 400,
       message: 'something went wrong',
+    });
+  }
+
+  async signin(req, res) {
+    const [user] = await UserModel.getUser(req.body.email);
+    if (!user) {
+      return res.status(404).json({
+        status: 404,
+        message: 'User not found',
+      });
+    }
+    if (!Helper.matchUser(req.body.password, user.password)) {
+      return res.status(401).json({
+        status: 401,
+        message: 'Invalid login credintials',
+      });
+    }
+
+    const token = Helper.generateUserToken(req.body.email);
+    return res.status(200).json({
+      status: 200,
+      message: 'user is successfully logged in',
+      data: { access_token: token },
     });
   }
 }

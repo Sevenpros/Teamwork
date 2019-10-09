@@ -5,6 +5,7 @@ import UserController from '../controllers/userController';
 const dbRouter = express.Router();
 dbRouter.use(express.json());
 dbRouter.post('/auth/signup', UserController.signup);
+dbRouter.post('/auth/signin', UserController.signin);
 
 
 export default dbRouter;
