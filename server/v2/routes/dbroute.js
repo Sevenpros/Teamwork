@@ -4,9 +4,10 @@ import Authentication from '../../middlewares/authentication';
 import ArticleController from '../controllers/articleController';
 
 const dbRouter = express.Router();
-dbRouter.use(express.json());
+ ft-write-article-169029075
 dbRouter.post('/auth/signup', Authentication.isValidUser, UserController.signup);
 dbRouter.post('/articles', Authentication.auth, ArticleController.shareArticles);
+
 
 
 export default dbRouter;
