@@ -1,8 +1,9 @@
 /* eslint-disable class-methods-use-this */
 /* eslint-disable max-len */
 /* eslint-disable import/prefer-default-export */
-import uuid1 from 'uuidv1';
+import uuid1 from 'uuidv1'; 
 import query from './index';
+
 
 
 class UserModel {
@@ -10,7 +11,7 @@ class UserModel {
     const userquery = {
       text: `INSERT INTO users (id, firstName, lastName, email, password, gender, job_role, department, address, is_admin)
         values($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) returning *`,
-      values: [uuid1(), user.firstName, user.lastName, user.email, user.password, user.gender, user.jobRole, user.department, user.address, user.isadmin],
+      values: [uuid1(), user.firstName, user.lastName, user.email, Helper.securePassword(user.password), user.gender, user.jobRole, user.department, user.address, user.isadmin],
     };
     try {
       const newUser = await query(userquery);
