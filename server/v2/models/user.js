@@ -3,7 +3,7 @@
 /* eslint-disable import/prefer-default-export */
 import uuid1 from 'uuidv1'; 
 import query from './index';
-
+import Helper from '../../helpers/userHelper';
 
 
 class UserModel {
