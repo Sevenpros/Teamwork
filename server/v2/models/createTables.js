@@ -18,7 +18,7 @@ const userTable = async () => {
     isAdmin BOOLEAN
   )`;
   try {
-    await query.execute(userquery);
+    await query(userquery);
   } catch (error) {
     console.log(error.message);
   }
@@ -37,7 +37,7 @@ const articleTable = async () => {
     )`;
 
   try {
-    query.execute(userquery);
+    query(userquery);
   } catch (error) {
     console.log(error.message);
   }
@@ -67,7 +67,7 @@ const insertNewUser = async () => {
     'Seth',
     'Bizimana',
     'seth@gmail.com',
-    Helper.securePasswor('olivier'),
+    Helper.securePassword('olivier'),
     'male',
     'Software engineer',
     'Kigali',

@@ -10,7 +10,7 @@
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "start": "nodemon --exec babel-node server/app.js",
     "build": "babel server --out-dir dist --ignore 'server/**/**.spec.js','src/**/.test.js'",
-    "create:tables": "babel-node server/v2/models/creatTables.js"
+    "create:tables": "babel-node server/v2/models/createTables"
   },
   "repository": {
     "type": "git",
