@@ -11,7 +11,7 @@ class UserController {
         message: 'User created successfuly',
         data: {
           token: Helper.generateUserToken(req.body.email),
-          Names: `${user.fistname} ${user.lastname}`,
+          Names: `${user.firstname} ${user.lastname}`,
         },
       });
     } catch (err) {

@@ -10,9 +10,8 @@ pool.on('connect', () => {
   console.log('Database connected');
 });
 
-
-const connectDb = (query) => pool.query(query)
+const query = (userquery) => pool.query(userquery)
   .then((res) => res.rows)
-  .catch((err) => err);
+  .catch((error) => { throw new Error(error); });
 
-export default connectDb;
+export default query;
