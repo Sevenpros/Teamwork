@@ -1,49 +1,70 @@
 /* eslint-disable class-methods-use-this */
 import uuidv1 from 'uuidv1';
 import moment from 'moment';
-import connectDb from './index';
+import query from './index';
+import UserModel from './user';
 
 class Articles {
   async saveArticle(article) {
-    const query = {
-      text: 'INSERT INTO articles (article_id, author_id, title, article, created_on) values($1, $2, $3, $4, $5) returning *',
-      values: [uuidv1(), article.authorId, article.title, article.article, moment().format('YYYY-MM-DD')],
+    const userquery = {
+      text: 'INSERT INTO articles (id, title, article, authorid, createdon,categories) values($1, $2, $3, $4, $5, $6) returning *',
+      values: [uuidv1(), article.title, article.article, article.authorid, moment().format('YYYY-MM-DD'), article.categories],
     };
-    const result = await connectDb(query);
-    return result;
+    try {
+      const result = await query(userquery);
+      return result;
+    } catch (error) {
+      throw new Error(error);
+    }
   }
 
   async findOneArticle(articleId) {
-    const query = {
-      test: 'SELECT * FROM articles WHERE article_id = $1',
+    const userquery = {
+      text: 'SELECT * FROM articles WHERE id = $1',
       values: [articleId],
     };
-    const foundArticle = await connectDb(query);
-    return foundArticle;
+    try {
+      const article = await query(userquery);
+      return article;
+    } catch (error) {
+      throw new Error(error);
+    }
   }
 
-  async getAllArticle() {
-    const query = 'SELECT * FROM articles ORDER BY created_on DESC';
-    const allArticles = await connectDb(query);
-    return allArticles;
+  async getAllArticles() {
+    const userquery = 'SELECT * FROM articles ORDER BY createdon DESC';
+    try {
+      const allArticles = await query(userquery);
+      return allArticles;
+    } catch (error) {
+      throw new Error(error);
+    }
   }
 
   async deleteArticle(articleId) {
-    const query = {
-      text: 'DELETE FROM articles WHERE article_id = $1',
+    const userquery = {
+      text: 'DELETE FROM articles WHERE id = $1 returning',
       values: [articleId],
     };
-    const result = await connectDb(query);
-    return result;
+    try {
+      const result = await query(userquery);
+      return result;
+    } catch (error) {
+      throw new Error(error);
+    }
   }
 
-  async updateTitle(article) {
-    const query = {
-      text: 'UPDATE articles SET title = $2, article = $3 WHERE article_id = $1',
+  async updateArticle(article) {
+    const userquery = {
+      text: 'UPDATE articles SET title = $2, article = $3 WHERE article_id = $1 returning',
       values: [article.articleId, article.title, article.article],
     };
-    const result = await connectDb(query);
-    return result;
+    try {
+      const result = await query(userquery);
+      return result;
+    } catch (error) {
+      throw new Error(error);
+    }
   }
 }
 export default new Articles();

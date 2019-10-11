@@ -9,7 +9,7 @@ import Helper from '../../helpers/userHelper';
 class UserModel {
   async addNewUser(user) {
     const userquery = {
-      text: `INSERT INTO users (id, firstName, lastName, email, password, gender, job_role, department, address, is_admin)
+      text: `INSERT INTO users (id, firstName, lastName, email, password, gender, jobrole, department, address, isadmin)
         values($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) returning *`,
       values: [uuid1(), user.firstName, user.lastName, user.email, Helper.securePassword(user.password), user.gender, user.jobRole, user.department, user.address, user.isadmin],
     };

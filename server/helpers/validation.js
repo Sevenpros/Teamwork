@@ -20,18 +20,20 @@ class Validation {
 
   validateArticle(article) {
     const schema = {
-      authorId: Joi.string().required(),
-      authorName: Joi.string().required(),
+      authorid: Joi.string().required(),
       title: Joi.string().min(3).required(),
       article: Joi.string().min(10).required(),
+      categories: Joi.string().required(),
+
+
     };
     return Joi.validate(article, schema);
   }
 
   validateComment(comment) {
     const schema = {
-      authorName: Joi.string(),
-      authorId: Joi.string(),
+     authorName: Joi.string(),
+     authorId: Joi.string(),
       comment: Joi.string().min(5).required(),
     };
     return Joi.validate(comment, schema);

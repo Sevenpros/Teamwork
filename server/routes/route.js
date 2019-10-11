@@ -7,7 +7,7 @@ const router = express.Router();
 router.use(express.json());
 router.post('/auth/signup', User.signup);
 router.post('/auth/signin', User.signin);
-router.post('/articles', Authentication.auth, ArticleController.shareArticles);
+router.post('/articles', Authentication.auth, Authentication.isValidArticle, ArticleController.shareArticles);
 router.get('/feeds', Authentication.auth, ArticleController.viewSortedArticles);
 router.patch('/articles/:id', Authentication.auth, ArticleController.editArticle);
 router.delete('/articles/:id', Authentication.auth, ArticleController.deleteArticle);
