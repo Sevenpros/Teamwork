@@ -8,18 +8,6 @@ import Helper from '../helpers/userHelper';
 
 class ArticleController {
   shareArticles(req, res) {
-    const { email } = req.payload;
-    const user = Helper.getUser(email);
-    req.body.authorId = user.id;
-    req.body.authorName = user.firstName;
-    const { error } = Validation.validateArticle(req.body);
-    if (error) {
-      res.status(400).json({
-        status: 400,
-        messge: error.details[0].message.replace(/[/"]/g, ''),
-      });
-    }
-
     // eslint-disable-next-line max-len
     const article = req.body;
     ArticleHelper.AddArticle(article);
@@ -67,16 +55,20 @@ class ArticleController {
         message: 'article with given id is not found',
       });
     }
-    if (!ArticleHelper.checkAuthor(req)) {
-      return res.status(401).json({
-        status: 401,
-        message: 'user is not allowed to edit this article',
-      });
-    }
+    // if (!ArticleHelper.checkAuthor(req)) {
+    //   return res.status(401).json({
+    //     status: 401,
+    //     message: 'user is not allowed to edit this article',
+    //   });
+    // }
+
     if (req.body.title) {
       articleToEdit.title = req.body.title;
     }
     if (req.body.article) {
+      articleToEdit.article = req.body.article;
+    }
+    if (req.body.categories) {
       articleToEdit.article = req.body.article;
     }
     return res.status(200).json({
@@ -90,24 +82,16 @@ class ArticleController {
   }
 
   deleteArticle(req, res) {
-    let status;
-    let message;
     const toDelete = ArticleHelper.findArticle(req.params.id);
     if (toDelete) {
-      if (ArticleHelper.checkAuthor(req)) {
-        const index = articles.indexOf(toDelete);
-        articles.splice(index, 1);
-        return res.sendStatus(204);
-      }
-      status = 401;
-      message = 'authentication failed';
-    } else {
-      status = 404;
-      message = 'article not found';
+      const index = articles.indexOf(toDelete);
+      articles.splice(index, 1);
+      return res.sendStatus(204);
     }
-    return res.status(status).json({
-      status,
-      message,
+
+    return res.status(404).json({
+      status: 404,
+      message: 'article not found',
     });
   }
 
@@ -116,35 +100,32 @@ class ArticleController {
     let message;
     const { error } = Validation.validateComment(req.body);
     if (error) {
-      status = 400;
-      message = error.details[0].message.replace(/[/"]/g, '');
-      return res.status(status).json({
-        status,
-        message,
+      
+      return res.status(400).json({
+        status: 400,
+        message: error.details[0].message.replace(/[/"]/g, ''),
       });
     }
     const articleToComment = ArticleHelper.findArticle(req.params.id);
     if (articleToComment) {
-      const author = Helper.getUser(req.payload.email);
+      const author = Helper.getUser(req.payload.id);
       const userComment = {
         commentId: `$comment-${uuidv1()}`,
         authorId: author.id,
         comment: req.body.comment,
       };
       articleToComment.comments.push(userComment);
-      status = 201;
-      message = 'comment added successfully';
-      return res.status(status).json({
-        status,
-        message,
+      
+      return res.status(201).json({
+        status: 201,
+        message: 'comment added successfully',
         data: req.body.comment,
       });
     }
-    status = 404;
-    message = 'article with provided id is not found';
-    return res.status(status).json({
-      status,
-      message,
+   
+    return res.status(404).json({
+      status: 404,
+      message: 'article with provided id is not found',
     });
   }
 }

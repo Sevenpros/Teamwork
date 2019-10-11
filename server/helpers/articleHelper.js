@@ -30,9 +30,10 @@ class ArticleHelper {
     if (!req.payload) {
       // return;
     }
-    const author = Helper.getUser(req.payload.email);
     const article = this.findArticle(req.params.id);
-    return author.id === article.authorId;
+    console.log(req.payload.email);
+    console.log(article.authorId);
+    return req.payload.id === article.authorId;
   }
 }
 

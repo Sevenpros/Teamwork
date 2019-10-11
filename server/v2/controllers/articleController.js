@@ -1,36 +1,21 @@
+/* eslint-disable consistent-return */
 /* eslint-disable class-methods-use-this */
 
 import Articles from '../models/article';
-import UserModel from '../models/user';
-import Validation from '../../helpers/validation';
 
 class ArticleController {
   async shareArticles(req, res) {
-    const { email } = req.payload;
-    const [user] = await UserModel.getUser(email);
-    req.body.authorId = user.id;
-    req.body.authorName = user.firstname;
-    const { error } = Validation.validateArticle(req.body);
-    if (error) {
-      res.status(400).json({
-        status: 400,
-        messge: error.details[0].message.replace(/[/"]/g, ''),
-      });
-    }
-
-    // eslint-disable-next-line max-len
-    const article = req.body;
     try {
-      const [...savedArticle] = await Articles.saveArticle(article);
+      const [...savedArticle] = await Articles.saveArticle(req.body);
       const [art] = savedArticle;
       if (savedArticle) {
         res.status(200).json({
           status: 200,
           message: 'article successfully created',
           data: {
-            articleId: art.article_id,
+            articleId: art.id,
             title: art.title,
-            createdOn: art.created_on,
+            createdOn: art.createdon,
           },
         });
       }
@@ -41,6 +26,115 @@ class ArticleController {
       });
     }
   }
-}
 
+  async viewArticles(req, res) {
+    try {
+      const articles = await Articles.getAllArticles();
+      return res.status(200).json({
+        status: 200,
+        data: {
+          articles,
+        },
+      });
+    } catch (error) {
+      return res.status(400).json({
+        statu: 400,
+        error: `Error occured during retrieving articles: ${error}`,
+      });
+    }
+  }
+
+  async viewOneArticle(req, res) {
+    try {
+      const [article] = await Articles.findOneArticle(req.params.id);
+      return res.status(200).json({
+        status: 200,
+        data: {
+          article,
+        },
+      });
+    } catch (error) {
+      return res.status(400).json({
+        status: 400,
+        error: `Error occured during retrieving article: ${error}`,
+      });
+    }
+  }
+
+  async deleteArticle(req, res) {
+    try {
+      const [article] = await Articles.findOneArticle(req.params.id);
+      if (article) {
+        if (article.authoid === req.payload.id) {
+          try {
+            const isDeleted = await Articles.deleteArticle(req.params.id);
+            if (isDeleted) {
+              return res.status(200).json({
+                status: 200,
+                message: 'Article is deleted',
+              });
+            }
+          } catch (error) {
+            return res.status(401).json({
+              status: 401,
+              error: `Error occured: ${error}`,
+            });
+          }
+        }
+      } return res.status(401).json({
+        status: 401,
+        error: 'Article is not found!',
+      });
+    } catch (error) {
+      return res.status(400).json({
+        status: 400,
+        error: `Article is not found: ${error}`,
+      });
+    }
+  }
+
+  async editArticle(req, res) {
+    try {
+      const [article] = await Articles.findOneArticle(req.params.id);
+      if (article) {
+        if (req.payload.id === article.id) {
+          const articleToEdit = {
+            newTitle: req.body.title || article.title,
+            newArticle: req.body.article || article.article,
+          };
+          try {
+            const [isEdited] = await Articles.updateArticle(articleToEdit);
+            console.log(isEdited);
+            if (isEdited) {
+              return res.status(201).json({
+                status: 201,
+                message: 'Article Modified',
+                data: {
+                  isEdited,
+                },
+              });
+            } return res.status(401).json({
+              status: 400,
+              error: 'Article not found',
+            });
+          } catch (error) {
+            return res.status(401).json({
+              status: 400,
+              error,
+            });
+          }
+        }
+      }
+      return res.status(401).json({
+        status: 400,
+        error: `ni hatari: ${error}`,
+      });
+    } catch (error) {
+      return res.status(401).json({
+        status: 400,
+        error,
+      });
+    }
+  }
+} 
 export default new ArticleController();

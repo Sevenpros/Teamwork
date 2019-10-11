@@ -16,8 +16,8 @@ class Helper {
     return user;
   }
 
-  generateUserToken(email) {
-    const token = jwt.sign({ email }, process.env.TOKEN_KEY);
+  generateUserToken(id, email) {
+    const token = jwt.sign({ id, email }, process.env.TOKEN_KEY);
     return token;
   }
 

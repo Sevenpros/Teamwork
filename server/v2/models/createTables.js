@@ -9,7 +9,7 @@ const userTable = async () => {
     id UUID PRIMARY KEY,
     firstname VARCHAR(128) NOT NULL,
     lastname VARCHAR(128) NOT NULL,
-    email VARCHAR(128) NOT NULL,
+    email VARCHAR(128) NOT NULL UNIQUE,
     password VARCHAR(128) NOT NULL,
     gender VARCHAR(128) NOT NULL,
     jobRole VARCHAR(128) NOT NULL,
@@ -28,12 +28,12 @@ const articleTable = async () => {
   const userquery = `DROP TABLE IF EXISTS articles;
   CREATE TABLE articles
   (
-    id SERIAL PRIMARY KEY,
-    title VARCHAR(128) NOT NULL,
-    article VARCHAR(1048) NOT NULL,
+    id UUID PRIMARY KEY,
+    title TEXT NOT NULL,
+    article TEXT NOT NULL,
     createdOn DATE NOT NULL,
-    authorid INT,
-    categories VARCHAR [] NOT NULL
+    authorid UUID,
+    categories VARCHAR(2000) NOT NULL
     )`;
 
   try {
@@ -50,9 +50,9 @@ const commentsTable = async () => {
     id SERIAL PRIMARY KEY,
     comment VARCHAR(128) NOT NULL,
     article VARCHAR(1048) NOT NULL,
-    articleid INT,
+    articleid UUID,
     createdOn DATE NOT NULL,
-    authorid INT
+    authorid UUID
     )`;
 
   try {
