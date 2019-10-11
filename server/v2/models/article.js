@@ -43,7 +43,7 @@ class Articles {
 
   async deleteArticle(articleId) {
     const userquery = {
-      text: 'DELETE FROM articles WHERE id = $1 returning',
+      text: 'DELETE FROM articles WHERE id = $1',
       values: [articleId],
     };
     try {
