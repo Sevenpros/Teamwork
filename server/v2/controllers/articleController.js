@@ -64,16 +64,22 @@ class ArticleController {
   async deleteArticle(req, res) {
     try {
       const [article] = await Articles.findOneArticle(req.params.id);
+      if (!article) {
+        return res.status(401).json({
+          status: 401,
+          error: 'Article is not found!',
+        });
+      }
       if (article) {
-        if (article.authoid === req.payload.id) {
+        
+        if (article.authorid === req.payload.id) {
           try {
-            const isDeleted = await Articles.deleteArticle(req.params.id);
-            if (isDeleted) {
-              return res.status(200).json({
-                status: 200,
-                message: 'Article is deleted',
-              });
-            }
+            await Articles.deleteArticle(req.params.id);
+
+            res.status(200).json({
+              status: 200,
+              message: 'Article is deleted',
+            });
           } catch (error) {
             return res.status(401).json({
               status: 401,
@@ -81,10 +87,12 @@ class ArticleController {
             });
           }
         }
-      } return res.status(401).json({
-        status: 401,
-        error: 'Article is not found!',
-      });
+      } else {
+        return res.status(400).json({
+          status: 400,
+          error: 'Unauthorized user',
+        });
+      }
     } catch (error) {
       return res.status(400).json({
         status: 400,
@@ -136,5 +144,5 @@ class ArticleController {
       });
     }
   }
-} 
+}
 export default new ArticleController();
