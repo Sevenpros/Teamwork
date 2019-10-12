@@ -2,7 +2,6 @@
 import uuidv1 from 'uuidv1';
 import moment from 'moment';
 import query from './index';
-import UserModel from './user';
 
 class Articles {
   async saveArticle(article) {
@@ -46,24 +45,21 @@ class Articles {
       text: 'DELETE FROM articles WHERE id = $1',
       values: [articleId],
     };
-    try {
-      const result = await query(userquery);
-      return result;
-    } catch (error) {
-      throw new Error(error);
-    }
+    await query(userquery)
+      .then((res) => res)
+      .catch((error) => { throw new Error(error); });
   }
 
-  async updateArticle(article) {
+  async updateArticle(article, id) {
     const userquery = {
-      text: 'UPDATE articles SET title = $2, article = $3 WHERE article_id = $1 returning',
-      values: [article.articleId, article.title, article.article],
+      text: 'UPDATE articles SET title = $2, article = $3, categories = $4 WHERE id = $1 returning *',
+      values: [id, article.newTitle, article.newArticle, article.newCategory],
     };
     try {
       const result = await query(userquery);
       return result;
-    } catch (error) {
-      throw new Error(error);
+    } catch (e) {
+      throw new Error(e);
     }
   }
 }
