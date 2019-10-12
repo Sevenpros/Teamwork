@@ -1,6 +1,7 @@
 /* eslint-disable consistent-return */
 /* eslint-disable class-methods-use-this */
 
+import moment from 'moment';
 import Articles from '../models/article';
 
 class ArticleController {
@@ -32,13 +33,11 @@ class ArticleController {
       const articles = await Articles.getAllArticles();
       return res.status(200).json({
         status: 200,
-        data: {
-          articles,
-        },
+        data: { articles },
       });
     } catch (error) {
-      return res.status(400).json({
-        statu: 400,
+      return res.status(500).json({
+        statu: 500,
         error: `Error occured during retrieving articles: ${error}`,
       });
     }
@@ -49,98 +48,54 @@ class ArticleController {
       const [article] = await Articles.findOneArticle(req.params.id);
       return res.status(200).json({
         status: 200,
-        data: {
-          article,
-        },
+        data: { article },
       });
     } catch (error) {
-      return res.status(400).json({
-        status: 400,
+      return res.status(500).json({
+        status: 500,
         error: `Error occured during retrieving article: ${error}`,
       });
     }
   }
 
   async deleteArticle(req, res) {
-    try {
-      const [article] = await Articles.findOneArticle(req.params.id);
-      if (!article) {
-        return res.status(401).json({
-          status: 401,
-          error: 'Article is not found!',
+    await Articles.deleteArticle(req.params.id)
+      .then(() => {
+        res.status(200).json({
+          status: 200,
+          message: 'Article is Deleted',
         });
-      }
-      if (article) {
-        
-        if (article.authorid === req.payload.id) {
-          try {
-            await Articles.deleteArticle(req.params.id);
-
-            res.status(200).json({
-              status: 200,
-              message: 'Article is deleted',
-            });
-          } catch (error) {
-            return res.status(401).json({
-              status: 401,
-              error: `Error occured: ${error}`,
-            });
-          }
-        }
-      } else {
-        return res.status(400).json({
-          status: 400,
-          error: 'Unauthorized user',
+      })
+      .catch((error) => {
+        res.status(500).json({
+          satatus: 500,
+          error: `Article is not deleted: ${error}`,
         });
-      }
-    } catch (error) {
-      return res.status(400).json({
-        status: 400,
-        error: `Article is not found: ${error}`,
       });
-    }
   }
 
   async editArticle(req, res) {
+    const [article] = await Articles.findOneArticle(req.params.id);
+    const articleToEdit = {
+      newTitle: req.body.title || article.title,
+      newArticle: req.body.article || article.article,
+      newCategory: req.body.categories || article.categories,
+    };
     try {
-      const [article] = await Articles.findOneArticle(req.params.id);
-      if (article) {
-        if (req.payload.id === article.id) {
-          const articleToEdit = {
-            newTitle: req.body.title || article.title,
-            newArticle: req.body.article || article.article,
-          };
-          try {
-            const [isEdited] = await Articles.updateArticle(articleToEdit);
-            console.log(isEdited);
-            if (isEdited) {
-              return res.status(201).json({
-                status: 201,
-                message: 'Article Modified',
-                data: {
-                  isEdited,
-                },
-              });
-            } return res.status(401).json({
-              status: 400,
-              error: 'Article not found',
-            });
-          } catch (error) {
-            return res.status(401).json({
-              status: 400,
-              error,
-            });
-          }
-        }
-      }
-      return res.status(401).json({
-        status: 400,
-        error: `ni hatari: ${error}`,
+      const [isEdited] = await Articles.updateArticle(articleToEdit, req.params.id);
+      res.status(200).json({
+        status: 201,
+        message: 'Article is Edited',
+        data: {
+          title: isEdited.title,
+          article: isEdited.article,
+          updatedon: moment().format('YYYY-MM-DD'),
+        },
       });
-    } catch (error) {
-      return res.status(401).json({
-        status: 400,
-        error,
+    } catch (e) {
+      res.status(500).json({
+        status: 500,
+        message: `Some went wrong: ${e}`,
       });
     }
   }
