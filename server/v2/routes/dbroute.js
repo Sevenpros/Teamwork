@@ -22,5 +22,8 @@ dbRouter.patch('/articles/:id', Authentication.auth,
   Validator.isArticle,
   Validator.isOwner,
   ArticleController.editArticle);
-
+dbRouter.post('/articles/:id/comments', Authentication.auth,
+  Validator.isUUID,
+  Validator.isArticle,
+  ArticleController.addComment);
 export default dbRouter;

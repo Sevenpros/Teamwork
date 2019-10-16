@@ -23,9 +23,9 @@ class Validator {
         message: 'Article With provided id is not found',
       });
     } catch (error) {
-      return res.statu(500).json({
+      return res.status(500).json({
         status: 500,
-        message: error,
+        message: `some error ocuured: ${error}`,
       });
     }
   }
