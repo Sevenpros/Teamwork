@@ -3,6 +3,7 @@
 
 import moment from 'moment';
 import Articles from '../models/article';
+import Comments from '../models/comment';
 
 class ArticleController {
   async shareArticles(req, res) {
@@ -46,9 +47,15 @@ class ArticleController {
   async viewOneArticle(req, res) {
     try {
       const [article] = await Articles.findOneArticle(req.params.id);
+      const comments = await Comments.viewComment(article.id);
       return res.status(200).json({
         status: 200,
-        data: { article },
+        data: {
+          title: article.title,
+          article: article.article,
+          createdon: article.createdon,
+          comments,
+        },
       });
     } catch (error) {
       return res.status(500).json({
@@ -96,6 +103,24 @@ class ArticleController {
       res.status(500).json({
         status: 500,
         message: `Some went wrong: ${e}`,
+      });
+    }
+  }
+
+  async addComment(req, res) {
+    // eslint-disable-next-line max-len
+    const comment = { authorid: req.payload.id, articleid: req.params.id, comment: req.body.comment };
+    try {
+      const [...result] = await Comments.addComment(comment);
+      return res.status(201).json({
+        status: 201,
+        message: 'Comment Added',
+        data: result,
+      });
+    } catch (e) {
+      return res.status(500).json({
+        status: 500,
+        message: `Error occured:${e}`,
       });
     }
   }

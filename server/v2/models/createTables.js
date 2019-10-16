@@ -6,7 +6,7 @@ const userTable = async () => {
   const userquery = `DROP TABLE IF EXISTS users;
   CREATE TABLE users
   (
-    id UUID PRIMARY KEY,
+    id UUID PRIMARY KEY UNIQUE,
     firstname VARCHAR(128) NOT NULL,
     lastname VARCHAR(128) NOT NULL,
     email VARCHAR(128) NOT NULL UNIQUE,
@@ -28,11 +28,11 @@ const articleTable = async () => {
   const userquery = `DROP TABLE IF EXISTS articles;
   CREATE TABLE articles
   (
-    id UUID PRIMARY KEY,
+    id UUID PRIMARY KEY UNIQUE,
     title TEXT NOT NULL,
     article TEXT NOT NULL,
     createdOn DATE NOT NULL,
-    authorid UUID,
+    authorid UUID NOT NULL,
     categories VARCHAR(2000) NOT NULL
     )`;
 
@@ -47,12 +47,11 @@ const commentsTable = async () => {
   const userquery = `DROP TABLE IF EXISTS comments;
   CREATE TABLE comments
   (
-    id SERIAL PRIMARY KEY,
+    id UUID PRIMARY KEY UNIQUE,
     comment VARCHAR(128) NOT NULL,
-    article VARCHAR(1048) NOT NULL,
-    articleid UUID,
+    articleid UUID NOT NULL,
     createdOn DATE NOT NULL,
-    authorid UUID
+    authorid UUID NOT NULL
     )`;
 
   try {
@@ -67,7 +66,7 @@ const insertNewUser = async () => {
     'Seth',
     'Bizimana',
     'seth@gmail.com',
-    Helper.securePassword('olivier'),
+    Helper.securePassword('12345678'),
     'male',
     'Software engineer',
     'Kigali',
