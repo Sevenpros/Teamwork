@@ -2,7 +2,6 @@
 import uuidv1 from 'uuidv1';
 import moment from 'moment';
 import articles from '../models/article';
-import Helper from './userHelper';
 
 class ArticleHelper {
   AddArticle(article) {
@@ -31,8 +30,6 @@ class ArticleHelper {
       // return;
     }
     const article = this.findArticle(req.params.id);
-    console.log(req.payload.email);
-    console.log(article.authorId);
     return req.payload.id === article.authorId;
   }
 }

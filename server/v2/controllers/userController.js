@@ -33,14 +33,14 @@ class UserController {
             token: Helper.generateUserToken(user.id, user.email),
           });
         }
-        return res.status(400).json({
-          status: 400,
+        return res.status(401).json({
+          status: 401,
           error: 'Invalid credentials',
         });
       }
 
-      return res.status(400).json({
-        status: 400,
+      return res.status(404).json({
+        status: 404,
         error: 'Email doesn\'t exist',
       });
     } catch (error) {

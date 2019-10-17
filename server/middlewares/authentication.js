@@ -2,9 +2,7 @@
 /* eslint-disable class-methods-use-this */
 /* eslint-disable import/prefer-default-export */
 import jwt from 'jsonwebtoken';
-import Helper from '../helpers/userHelper';
 import Validation from '../helpers/validation';
-import UserModel from '../v2/models/user';
 
 class Authentication {
   auth(req, res, next) {
@@ -34,7 +32,7 @@ class Authentication {
   isValidUser(req, res, next) {
     const { error } = Validation.validateUser(req.body);
     if (error) {
-      return res.status(401).json({
+      return res.status(400).json({
         message: error.details[0].message.replace(/[/"]/g, ''),
       });
     }
