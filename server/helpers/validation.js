@@ -20,7 +20,7 @@ class Validation {
 
   validateArticle(article) {
     const schema = {
-      authorid: Joi.string().required(),
+      authorid: Joi.required(),
       title: Joi.string().min(3).required(),
       article: Joi.string().min(10).required(),
       categories: Joi.string().required(),
@@ -32,11 +32,19 @@ class Validation {
 
   validateComment(comment) {
     const schema = {
-     authorName: Joi.string(),
-     authorId: Joi.string(),
+      authorName: Joi.string(),
+      authorid: Joi.string(),
       comment: Joi.string().min(5).required(),
     };
     return Joi.validate(comment, schema);
+  }
+
+  validateLogins(logins) {
+    const schema = {
+      email: Joi.string().required(),
+      password: Joi.string().required(),
+    };
+    return Joi.validate(logins, schema);
   }
 }
 export default new Validation();

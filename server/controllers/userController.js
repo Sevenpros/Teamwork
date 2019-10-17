@@ -1,10 +1,11 @@
 /* eslint-disable class-methods-use-this */
 /* eslint-disable import/prefer-default-export */
-
+import dotenv from 'dotenv';
 import Helper from '../helpers/userHelper';
 import users from '../models/users';
 import Validation from '../helpers/validation';
 
+dotenv.config();
 class User {
   signup(req, res) {
     let status;
@@ -23,10 +24,12 @@ class User {
       status = 401;
       message = 'Email already exist';
     } else {
-      Helper.addUser(req);
+      Helper.addUser(req.body);
+      const { id } = users[users.length - 1];
+      const { email } = req.body.email;
       status = 201;
       message = 'User created successfully';
-      data = { token: users[users.length - 1].token };
+      data = { token: Helper.generateUserToken(id, email) };
     }
     return res.status(status).json({
       status,
@@ -49,8 +52,9 @@ class User {
         message: 'Invalid login credintials',
       });
     }
-
-    const token = Helper.generateUserToken(req.body.email);
+    const { id } = user;
+    const { email } = user;
+    const token = Helper.generateUserToken(id, email);
     return res.status(200).json({
       status: 200,
       message: 'user is successfully logged in',

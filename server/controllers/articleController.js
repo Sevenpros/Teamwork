@@ -4,11 +4,11 @@ import uuidv1 from 'uuidv1';
 import articles from '../models/article';
 import ArticleHelper from '../helpers/articleHelper';
 import Validation from '../helpers/validation';
-import Helper from '../helpers/userHelper';
 
 class ArticleController {
   shareArticles(req, res) {
     // eslint-disable-next-line max-len
+    req.body.authorId = req.payload.id;
     const article = req.body;
     ArticleHelper.AddArticle(article);
     res.status(200).json({
@@ -55,12 +55,12 @@ class ArticleController {
         message: 'article with given id is not found',
       });
     }
-    // if (!ArticleHelper.checkAuthor(req)) {
-    //   return res.status(401).json({
-    //     status: 401,
-    //     message: 'user is not allowed to edit this article',
-    //   });
-    // }
+    if (!ArticleHelper.checkAuthor(req)) {
+      return res.status(401).json({
+        status: 401,
+        message: 'user is not allowed to edit this article',
+      });
+    }
 
     if (req.body.title) {
       articleToEdit.title = req.body.title;
@@ -96,11 +96,8 @@ class ArticleController {
   }
 
   addComment(req, res) {
-    let status;
-    let message;
     const { error } = Validation.validateComment(req.body);
     if (error) {
-      
       return res.status(400).json({
         status: 400,
         message: error.details[0].message.replace(/[/"]/g, ''),
@@ -108,21 +105,20 @@ class ArticleController {
     }
     const articleToComment = ArticleHelper.findArticle(req.params.id);
     if (articleToComment) {
-      const author = Helper.getUser(req.payload.id);
+      const author = req.payload.id;
       const userComment = {
         commentId: `$comment-${uuidv1()}`,
-        authorId: author.id,
+        authorId: author,
         comment: req.body.comment,
       };
       articleToComment.comments.push(userComment);
-      
       return res.status(201).json({
         status: 201,
         message: 'comment added successfully',
         data: req.body.comment,
       });
     }
-   
+
     return res.status(404).json({
       status: 404,
       message: 'article with provided id is not found',

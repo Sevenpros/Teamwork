@@ -4,7 +4,6 @@ import jwt from 'jsonwebtoken';
 import { config } from 'dotenv';
 import bcrypt from 'bcrypt';
 import uuidv1 from 'uuidv1';
-import { Pool } from 'pg';
 import users from '../models/users';
 
 
@@ -25,18 +24,17 @@ class Helper {
     return bcrypt.compareSync(plain, hash);
   }
 
-  addUser(req) {
+  addUser(user) {
     const newUser = {
       id: `emp-${uuidv1()}`,
-      token: this.generateUserToken(req.body.email),
-      firstName: req.body.firstName,
-      lastName: req.body.lastName,
-      email: req.body.email,
-      password: this.securePassword(req.body.password),
-      gender: req.body.gender,
-      jobRole: req.body.jobRole,
-      department: req.body.department,
-      address: req.body.address,
+      firstName: user.firstName,
+      lastName: user.lastName,
+      email: user.email,
+      password: this.securePassword(user.password),
+      gender: user.gender,
+      jobRole: user.jobRole,
+      department: user.department,
+      address: user.address,
       isAdmin: false,
     };
     users.push(newUser);
